@@ -1,0 +1,33 @@
+const mongoose = require("mongoose");
+
+const fundingSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    product: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+    },
+    transaction: {
+      type: [
+        {
+          userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
+          amount: {
+            type: Number,
+          },
+        },
+      ],
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const Funding = mongoose.model("Funding", fundingSchema);
+module.exports = Funding;
