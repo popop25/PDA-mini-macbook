@@ -1,8 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
+import First from "./Home/First";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return <First></First>;
 }
 
 export default App;
