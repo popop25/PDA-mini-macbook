@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { userInfoState } from "../stores/auth";
+import { userState } from "../stores/auth";
 import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
   const baseUrl = "localhost:8000/api/user/login";
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [userInfo, setUserInfo] = useRecoilState(userState);
   const AUTH_KEY = "AUTH_USER";
   const [state, setState] = useState({
     email: "",
@@ -105,7 +105,7 @@ const Login = () => {
             <div>
               <Link
                 to="/"
-                className="text-sm font-medium text-gray-600 hover:text-gray-500"
+                className="text-sm font-medium text-gray-600 hover:text-gray-600"
               >
                 취소
               </Link>
@@ -114,7 +114,7 @@ const Login = () => {
               <button
                 type="button"
                 onClick={onClickLogin}
-                className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-yellow-300 border border-transparent rounded-md shadow-sm hover:hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+                className="inline-flex justify-center w-full px-4 py-2 leading-5 text-gray-600 font-bold transition duration-150 ease-in-out bg-yellow-300 border border-transparent rounded-md shadow-sm hover:hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
               >
                 로그인
               </button>

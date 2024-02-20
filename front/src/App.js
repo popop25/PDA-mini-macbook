@@ -6,11 +6,18 @@ import { mainRoutes } from "./router/router";
 import { Provider } from "react-redux";
 
 function renderRoutes(routesObj) {
-  console.log(routesObj);
   return routesObj.map((route) => {
-    console.log(route);
-    if (route) {
-      return <Route path={route.path} element={route.element}></Route>;
+    if (route.children) {
+      return (
+        <Route
+          key={route.path}
+          path={route.path}
+          index={route.index}
+          element={route.element}
+        >
+          {route.children ? renderRoutes(route.children) : null}
+        </Route>
+      );
     }
     return (
       <Route
