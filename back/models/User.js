@@ -7,8 +7,14 @@ const userSchema = new mongoose.Schema(
       unique: true
     },
     userPassword: String,
-    nickName: String,
-    phoneNumber: String,
+    nickName: {
+      type: String,
+      unique: true
+    },
+    phoneNumber: {
+      type: String,
+      unique: true
+    },
     birthDay: Date,
     friendList: {
       type: [mongoose.Schema.Types.ObjectId],
