@@ -1,36 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../stores/auth";
 import axios from "axios";
 
 const Login = () => {
+  const navigate = useNavigate();
   const baseUrl = "localhost:8000/api/user/login";
-
-  const onClickLogin = () => {
-    console.log("click login");
-    console.log("ID : ", state.email);
-    console.log("PW : ", state.password);
-
-    axios
-      .post(baseUrl, state)
-      .then(() => {
-        document.location.href = "/home";
-      })
-      .catch((error) => {
-        console.error(error);
-        alert("로그인이 실패했습니다.");
-      });
-  };
-
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const AUTH_KEY = "AUTH_USER";
   const [state, setState] = useState({
     email: "",
     password: "",
   });
 
-  const handleStateChange = (e) => {
+  const handleChangeState = (e) => {
     setState({
       ...state,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const onClickLogin = async (e) => {
+    e.preventDefault();
+
+    await axios
+      .post(baseUrl, state)
+      .then((response) => {
+        const user = response.data;
+        console.log(user.token);
+        navigate.push("/");
+        if (user.token) {
+          setUserInfo(user);
+          sessionStorage.setItem(AUTH_KEY, JSON.stringify(user));
+          navigate.push("/");
+        } else {
+          alert("Error logging in");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("로그인이 실패했습니다.");
+      });
   };
 
   return (
@@ -50,6 +61,7 @@ const Login = () => {
             <label
               htmlFor="email"
               className="block text-sm font-medium leading-5 text-gray-700"
+              placeholder="email"
             >
               Email address
             </label>
@@ -60,7 +72,7 @@ const Login = () => {
                 type="email"
                 autoComplete="email"
                 value={state.email}
-                onChange={handleStateChange}
+                onChange={handleChangeState}
                 required
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
@@ -80,7 +92,7 @@ const Login = () => {
                 name="password"
                 type="password"
                 value={state.password}
-                onChange={handleStateChange}
+                onChange={handleChangeState}
                 autoComplete="current-password"
                 required
                 placeholder="비밀번호를 입력하세요."

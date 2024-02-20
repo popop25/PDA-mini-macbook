@@ -3,7 +3,7 @@ import First from "../Home/First";
 import Login from "../Home/Login";
 import Signup from "../Home/Signup";
 
-const router = createBrowserRouter([
+export const mainRoutes = [
   {
     path: "/",
     element: <First />,
@@ -20,9 +20,7 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <Signup />,
   },
-  // {
-  //   path: '/home',
-  //   element: <Home />,
-  // },
-]);
+];
+const router = createBrowserRouter(mainRoutes);
+
 export default router;
