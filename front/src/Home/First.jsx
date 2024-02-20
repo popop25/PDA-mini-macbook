@@ -2,26 +2,30 @@ import { Link } from "react-router-dom";
 
 const First = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center h-full">
-      <div className="flex flex-col justify-center gap-5 items-center text-center">
-        <div className="font-mono text-4xl font-extrabold m-20 text-green-300	">
+    <div className="flex flex-col items-center justify-center h-full md:flex-row">
+      <div className="flex flex-col items-center justify-center gap-5 text-center">
+        <div className="m-20 font-mono text-4xl font-extrabold text-green-300 ">
           티끌 모아 태산!
+          <div className="text-myColor-yellow text-mySize">#FFF67E</div>
+          <div className="text-myColor-green1 text-mySize">#BFEA7C</div>
+          <div className="text-myColor-green2 text-mySize">#9BCF53</div>
+          <div className="text-myColor-green3 text-mySize">#416D19</div>
         </div>
         <img
           src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
-          className="mx-auto w-52 sm:w-96 rounded-full"
+          className="mx-auto rounded-full w-52 sm:w-96"
           alt="main"
         />
-        <div className="w-full flex flex-col md:flex-row gap-3 m-20">
+        <div className="flex flex-col w-full gap-3 m-20 md:flex-row">
           <Link
             to="/login"
-            className="mx-auto w-52 sm:w-96 md:mr-2 rounded bg-yellow-300 px-2 py-2 text-md font-semibold text-white shadow-sm hover:bg-lime-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+            className="px-2 py-2 mx-auto font-semibold text-white bg-yellow-300 rounded shadow-sm w-52 sm:w-96 md:mr-2 text-md hover:bg-lime-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
           >
             LOGIN
           </Link>
           <Link
             to="/signup"
-            className="mx-auto w-52 sm:w-96 md:ml-2 rounded bg-yellow-300 px-2 py-2 text-md font-semibold text-white shadow-sm hover:bg-lime-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+            className="px-2 py-2 mx-auto font-semibold text-white bg-yellow-300 rounded shadow-sm w-52 sm:w-96 md:ml-2 text-md hover:bg-lime-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
           >
             SIGN UP
           </Link>
