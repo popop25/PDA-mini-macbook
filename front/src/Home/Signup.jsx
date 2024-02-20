@@ -127,10 +127,10 @@ const Signup = () => {
             </div>
             <div>
               <Link
-                to="/signup/userinfo"
+                to="/login"
                 className="inline-flex justify-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-yellow-300 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
               >
-                다음
+                완료
               </Link>
             </div>
           </div>
