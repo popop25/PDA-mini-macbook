@@ -4,7 +4,7 @@ const First = () => {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center h-full">
       <div className="flex flex-col justify-center gap-5 items-center text-center">
-        <div className="text-2xl font-extrabold">티끌모아태산!</div>
+        <div className="text-2xl font-extrabold m-20">티끌모아태산!</div>
         <img
           src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
           className="mx-auto w-52 sm:w-96 rounded-full"
