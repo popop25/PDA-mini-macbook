@@ -3,6 +3,7 @@ import First from "../Home/First";
 import Login from "../Home/Login";
 import Signup from "../Home/Signup";
 import Layout from "../Components/Layout";
+import Footer from "../Components/Common/Footer";
 
 export const mainRoutes = [
   {
@@ -23,6 +24,11 @@ export const mainRoutes = [
         path: "/signup",
         index: true,
         element: <Signup />,
+      },
+      {
+        path: "/footer",
+        index: true,
+        element: <Footer />,
       },
     ],
   },
