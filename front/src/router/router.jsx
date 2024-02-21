@@ -5,6 +5,7 @@ import Signup from "../Home/Signup";
 import SandwichLayout from "../Components/SandwichLayout";
 import DefaultLayout from "../Components/DefaultLayout";
 import ComponentFooter from "../Components/Common/ComponentFooter";
+import Main from "../Main/Main";
 export const mainRoutes = [
   {
     path: "",
@@ -23,14 +24,14 @@ export const mainRoutes = [
         element: <Signup />,
       },
       {
-        path: "/footer",
-        index: true,
-        element: <ComponentFooter />,
-      },
-      {
         path: "",
         element: <SandwichLayout />,
-        children: [],
+        children: [
+          {
+            path: "/main",
+            element: <Main />,
+          },
+        ],
       },
     ],
   },
