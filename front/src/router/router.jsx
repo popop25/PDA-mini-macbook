@@ -2,33 +2,35 @@ import { createBrowserRouter } from "react-router-dom";
 import First from "../Home/First";
 import Login from "../Home/Login";
 import Signup from "../Home/Signup";
-import Layout from "../Components/Layout";
-import Footer from "../Components/Common/Footer";
-
+import SandwichLayout from "../Components/SandwichLayout";
+import DefaultLayout from "../Components/DefaultLayout";
+import ComponentFooter from "../Components/Common/ComponentFooter";
 export const mainRoutes = [
   {
     path: "",
-    element: <Layout />,
+    element: <DefaultLayout />,
     children: [
       {
-        path: "/",
         index: true,
         element: <First />,
       },
       {
         path: "/login",
-        index: true,
         element: <Login />,
       },
       {
         path: "/signup",
-        index: true,
         element: <Signup />,
       },
       {
         path: "/footer",
         index: true,
-        element: <Footer />,
+        element: <ComponentFooter />,
+      },
+      {
+        path: "",
+        element: <SandwichLayout />,
+        children: [],
       },
     ],
   },

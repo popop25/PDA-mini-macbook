@@ -7,7 +7,7 @@ import {
   BsTwitter,
 } from "react-icons/bs";
 
-export default function Component() {
+export default function ComponentFooter() {
   return (
     <Footer container>
       <div className="w-full">
