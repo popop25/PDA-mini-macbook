@@ -4,7 +4,8 @@ import Login from "../Home/Login";
 import Signup from "../Home/Signup";
 import SandwichLayout from "../Components/SandwichLayout";
 import DefaultLayout from "../Components/DefaultLayout";
-import ComponentFooter from "../Components/Common/ComponentFooter";
+import ComponentFooter from "../Components/Common/ComponentFooter";import User from "../Components/Common/User";
+
 export const mainRoutes = [
   {
     path: "",
@@ -30,7 +31,12 @@ export const mainRoutes = [
       {
         path: "",
         element: <SandwichLayout />,
-        children: [],
+        children: [
+          {
+            path: "/user",
+            element: <User />
+          }
+        ],
       },
     ],
   },
