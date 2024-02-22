@@ -14,10 +14,10 @@ export default function WishList({imageUrl, brandImageUrl, brandName, title, pri
                     </div>
                 </div>
                 <div style={{textAlign:"left"}}>
-                    <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white" style={{marginBottom:"5px"}}>
+                    <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white" style={{marginBottom:"5px"}}>
                         {title}
                     </h5>
-                    <p className="font-normal text-gray-700 dark:text-gray-400">
+                    <p className="text-xl font-normal text-gray-700 dark:text-gray-400">
                         {price} 원
                     </p>
                     {/* <FundingProgress></FundingProgress> */}
