@@ -4,8 +4,10 @@ import Login from "../Home/Login";
 import Signup from "../Home/Signup";
 import SandwichLayout from "../Components/SandwichLayout";
 import DefaultLayout from "../Components/DefaultLayout";
-import ComponentFooter from "../Components/Common/ComponentFooter";
 import Main from "../Main/Main";
+import Product from "../Product/Main";
+import WishList from "../WishList/Main";
+
 export const mainRoutes = [
   {
     path: "",
@@ -30,6 +32,14 @@ export const mainRoutes = [
           {
             path: "/main",
             element: <Main />,
+          },
+          {
+            path: "/product",
+            element: <Product />,
+          },
+          {
+            path: "/wish",
+            element: <WishList />,
           },
         ],
       },
