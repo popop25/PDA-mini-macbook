@@ -11,8 +11,8 @@ const Login = () => {
   const baseUrl = "http://localhost:8000/api/user/login"; // Ensure the protocol is included
   const [userInfo, setUserInfo] = useRecoilState(userState);
   const [state, setState] = useState({
-    email: "",
-    password: "",
+    userEmail: "",
+    userPassword: "",
   });
 
   const handleChangeState = (e) => {
@@ -57,27 +57,27 @@ const Login = () => {
           <div className="rounded-md shadow-sm">
             <div>
               <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
+                id="userEmail"
+                name="userEmail"
+                type="userEmail"
+                autoComplete="userEmail"
                 required
                 className="appearance-none w-full relative block px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
                 placeholder="이메일 주소"
-                value={state.email}
+                value={state.userEmail}
                 onChange={handleChangeState}
               />
             </div>
             <div className="mt-4">
               <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
+                id="userPassword"
+                name="userPassword"
+                type="userPassword"
+                autoComplete="current-userPassword"
                 required
                 className="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="비밀번호"
-                value={state.password}
+                value={state.userPassword}
                 onChange={handleChangeState}
               />
             </div>
