@@ -9,26 +9,28 @@ module.exports = {
     "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   theme: {
-    colors: {
-      myColor: {
-        yellow: "#FFF67E",
-        green1: "#BFEA7C",
-        green2: "#9BCF53",
-        green3: "#416D19",
+    extend: {
+      colors: {
+        myColor: {
+          yellow: "#FFF67E",
+          green1: "#BFEA7C",
+          green2: "#9BCF53",
+          green3: "#416D19",
+        },
+      },
+      fontSize: {
+        mySize: "50px",
+      },
+      width: {
+        myWidth: "15rem",
+      },
+      screens: {
+        myScreen: "999px",
       },
     },
-    fontSize: {
-      mySize: "50px",
-    },
-    width: {
-      myWidth: "15rem",
-    },
-    screens: {
-      myScreen: "999px",
-    },
+    plugins: [
+      // ...
+      require("flowbite/plugin"),
+    ],
   },
-  plugins: [
-    // ...
-    require("flowbite/plugin"),
-  ],
 };

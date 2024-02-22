@@ -6,6 +6,7 @@ import SandwichLayout from "../Components/SandwichLayout";
 import DefaultLayout from "../Components/DefaultLayout";
 import Main from "../Main/Main";
 import Product from "../Product/Main";
+import Funding from "../Funding/Main";
 import WishList from "../WishList/Main";
 import User from "../Components/Common/User";
 import ModalComp from "../Components/Common/Modal";
@@ -45,11 +46,15 @@ export const mainRoutes = [
           },
           {
             path: "/user",
-            element: <User />
+            element: <User />,
           },
           {
             path: "/modal",
-            element: <ModalComp />
+            element: <ModalComp />,
+          },
+          {
+            path: "/funding/:fundingId",
+            element: <Funding />,
           },
         ],
       },
