@@ -8,8 +8,9 @@ import Main from "../Main/Main";
 import Product from "../Product/Main";
 import Funding from "../Funding/Main";
 import WishList from "../WishList/Main";
-import User from "../Components/Common/User";
+import Friends from "../Components/Main/Friends";
 import ModalComp from "../Components/Common/Modal";
+import WishLists from "../Components/Main/WishLists";
 
 export const mainRoutes = [
   {
@@ -45,16 +46,16 @@ export const mainRoutes = [
             element: <WishList />,
           },
           {
-            path: "/user",
-            element: <User />,
+            path: "/friends",
+            element: <Friends />,
           },
           {
             path: "/modal",
             element: <ModalComp />,
           },
           {
-            path: "/funding/:fundingId",
-            element: <Funding />,
+            path: "/wishlists",
+            element: <WishLists />,
           },
         ],
       },
