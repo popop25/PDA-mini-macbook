@@ -6,6 +6,7 @@ import SandwichLayout from "../Components/SandwichLayout";
 import DefaultLayout from "../Components/DefaultLayout";
 import Main from "../Main/Main";
 import Product from "../Product/Main";
+import Funding from "../Funding/Main";
 import WishList from "../WishList/Main";
 import Friends from "../Components/Main/Friends";
 import ModalComp from "../Components/Common/Modal";
@@ -55,6 +56,10 @@ export const mainRoutes = [
           {
             path: "/wishlists",
             element: <WishLists />,
+          },
+          {
+            path: "/funding/:fundingId",
+            element: <Funding />,
           },
         ],
       },
