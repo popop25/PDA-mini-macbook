@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 
 const Signup = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-yellow-100 to-green-100">
       <div className="max-w-md w-full mx-auto p-8 bg-white rounded-lg shadow-lg">
         <img
           className="mx-auto h-20 w-auto rounded-full"
           src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
           alt="Your Company"
         />
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-teal-400">
           회원가입
         </h2>
 
@@ -114,13 +114,29 @@ const Signup = () => {
                 placeholder="Enter your Phone Number: ex) 010-0000-0000"
               />
             </div>
+            <label
+              htmlFor="dateOfBirth"
+              className="block text-sm font-medium leading-5 text-gray-700 mt-2"
+            >
+              Date of Birth
+            </label>
+            <div className="mt-1">
+              <input
+                id="dateOfBirth"
+                name="dateOfBirth"
+                type="date"
+                required
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="yyyy-mm-dd"
+              />
+            </div>
           </div>
 
           <div className="flex justify-between items-center">
             <div>
               <Link
                 to="/"
-                className="text-sm font-medium text-gray-600 hover:text-gray-500"
+                className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
               >
                 취소
               </Link>

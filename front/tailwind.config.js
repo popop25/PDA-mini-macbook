@@ -28,9 +28,9 @@ module.exports = {
         myScreen: "999px",
       },
     },
-    plugins: [
-      // ...
-      require("flowbite/plugin"),
-    ],
-  }
+  },
+  plugins: [
+    // ...
+    require("flowbite/plugin"),
+  ],
 };

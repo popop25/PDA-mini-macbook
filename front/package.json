@@ -9,6 +9,7 @@
     "axios": "^1.6.7",
     "bootstrap": "^5.3.2",
     "flowbite-react": "^0.7.2",
+    "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.1",
     "react-dom": "^18.2.0",
@@ -45,6 +46,5 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.1"
-  },
-  "proxy": "http://localhost:3001"
+  }
 }
