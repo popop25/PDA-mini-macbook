@@ -114,6 +114,22 @@ const Signup = () => {
                 placeholder="Enter your Phone Number: ex) 010-0000-0000"
               />
             </div>
+            <label
+              htmlFor="dateOfBirth"
+              className="block text-sm font-medium leading-5 text-gray-700 mt-2"
+            >
+              Date of Birth
+            </label>
+            <div className="mt-1">
+              <input
+                id="dateOfBirth"
+                name="dateOfBirth"
+                type="date"
+                required
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="yyyy-mm-dd"
+              />
+            </div>
           </div>
 
           <div className="flex justify-between items-center">
