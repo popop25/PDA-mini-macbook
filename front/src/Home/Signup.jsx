@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Signup = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-yellow-100 to-green-100">
       <div className="max-w-md w-full mx-auto p-8 bg-white rounded-lg shadow-lg">
         <img
           className="mx-auto h-20 w-auto rounded-full"
