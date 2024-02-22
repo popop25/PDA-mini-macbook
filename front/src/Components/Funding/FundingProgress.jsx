@@ -12,7 +12,7 @@ const FundingProgress = ({
   const now = (currentFundingAmount / targetFundingAmount) * 100;
   return (
     <div
-      className={`${customWidth} ${customHeight} border-2 rounded-md border-r-gray-300 flex flex-col justify-center items-center`}
+      className={`${customWidth} ${customHeight} bg-[#f5f7fb] border-r-gray-300 flex flex-col justify-center items-center`}
     >
       <div
         className={`flex flex-row items-stretch justify-between ${customProgressBarWidth} mb-2`}
