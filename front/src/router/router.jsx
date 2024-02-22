@@ -5,6 +5,7 @@ import Signup from "../Home/Signup";
 import SandwichLayout from "../Components/SandwichLayout";
 import DefaultLayout from "../Components/DefaultLayout";
 import ComponentFooter from "../Components/Common/ComponentFooter";import User from "../Components/Common/User";
+import ModalComp from "../Components/Common/Modal";
 
 export const mainRoutes = [
   {
@@ -35,6 +36,10 @@ export const mainRoutes = [
           {
             path: "/user",
             element: <User />
+          },
+          {
+            path: "/modal",
+            element: <ModalComp />
           }
         ],
       },
