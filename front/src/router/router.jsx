@@ -57,6 +57,10 @@ export const mainRoutes = [
             path: "/wishlists",
             element: <WishLists />,
           },
+          {
+            path: "/funding/:fundingId",
+            element: <Funding />,
+          },
         ],
       },
     ],
