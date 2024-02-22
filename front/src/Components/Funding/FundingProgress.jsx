@@ -8,12 +8,11 @@ const FundingProgress = ({
   customWidth = "w-[400px]",
   customHeight = "h-[200px]",
   customProgressBarWidth = "w-[380px]",
-  customColor = "#F5E8DD",
 }) => {
   const now = (currentFundingAmount / targetFundingAmount) * 100;
   return (
     <div
-      className={`${customWidth} ${customHeight} bg-myColor-green1 flex flex-col justify-center items-center`}
+      className={`${customWidth} ${customHeight} border-2 rounded-md border-r-gray-300 flex flex-col justify-center items-center`}
     >
       <div
         className={`flex flex-row items-stretch justify-between ${customProgressBarWidth} mb-2`}
@@ -24,7 +23,7 @@ const FundingProgress = ({
         <div>🗓️{remainDays}일 남음</div>
       </div>
       <div className={`${customProgressBarWidth}`}>
-        <ProgressBar now={now} label={`${now}%`} />
+        <ProgressBar now={now} label={`${now.toFixed(2)}%`} />
       </div>
     </div>
   );
