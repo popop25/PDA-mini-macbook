@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import FundingProgress from "../Components/Funding/FundingProgress";
+import FundingProfile from "../Components/Funding/FundingProfile";
 
 const Funding = () => {
   const { fundingId } = useParams();
@@ -10,7 +11,7 @@ const Funding = () => {
     "https://i.namu.wiki/i/UIwyVNxsFF7wq_RQTHPswOnGWMiAecEQn7-UWUFQZT3DDjJ_nKWgESBmH2qD5kT1wus_DsTRlSzS_LIqhMW97-cf7jZUdGUsvI2BjrRNyxpFrKUEqNh5mqAmR0ygZ2HtEkOvy3KmvOfKXLMyQyocxQ.webp";
   return (
     <div className="flex flex-col items-center">
-      <div className="w-[90vw] flex flex-col items-center">
+      <div className="w-[90vw] max-w-[700px] flex flex-col items-center">
         <div className="text-[40px] mt-2 font-semibold text-center">
           <div>
             <a className="font-extrabold ">{nickName}</a>님의
@@ -25,6 +26,15 @@ const Funding = () => {
         <button className="w-[80%] bg-myColor-green3 text-white mt-4 h-[50px] rounded-lg">
           펀딩하기
         </button>
+        <div className="flex flex-row w-[100%] mt-4 ">
+          {[1, 2, 3].map((value) => {
+            return (
+              <div className="w-[100%]" key={value}>
+                <FundingProfile />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
