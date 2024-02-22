@@ -9,7 +9,7 @@ const Signup = () => {
           src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
           alt="Your Company"
         />
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-teal-400">
           회원가입
         </h2>
 
@@ -136,7 +136,7 @@ const Signup = () => {
             <div>
               <Link
                 to="/"
-                className="text-sm font-medium text-gray-600 hover:text-gray-500"
+                className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
               >
                 취소
               </Link>
