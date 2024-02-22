@@ -7,6 +7,8 @@ import DefaultLayout from "../Components/DefaultLayout";
 import Main from "../Main/Main";
 import Product from "../Product/Main";
 import WishList from "../WishList/Main";
+import User from "../Components/Common/User";
+import ModalComp from "../Components/Common/Modal";
 
 export const mainRoutes = [
   {
@@ -40,6 +42,14 @@ export const mainRoutes = [
           {
             path: "/wish",
             element: <WishList />,
+          },
+          {
+            path: "/user",
+            element: <User />
+          },
+          {
+            path: "/modal",
+            element: <ModalComp />
           },
         ],
       },

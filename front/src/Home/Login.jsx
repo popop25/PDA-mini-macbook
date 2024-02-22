@@ -4,11 +4,12 @@ import { useRecoilState } from "recoil";
 import { userState } from "../stores/auth";
 import axios from "axios";
 
+export const AUTH_KEY = "AUTH_USER";
+
 const Login = () => {
   const navigate = useNavigate();
   const baseUrl = "localhost:8000/api/user/login";
   const [userInfo, setUserInfo] = useRecoilState(userState);
-  const AUTH_KEY = "AUTH_USER";
   const [state, setState] = useState({
     email: "",
     password: "",
