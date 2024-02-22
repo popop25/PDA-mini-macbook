@@ -5,7 +5,7 @@ const First = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-yellow-100 to-green-100 p-6">
       <div className="flex flex-col items-center justify-center gap-10 text-center w-full max-w-4xl">
         <h1 className="text-5xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-teal-400">
-          티끌 모아 태산!
+          티끌 모아 맥북!
         </h1>
         <img
           src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
