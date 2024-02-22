@@ -26,10 +26,10 @@ const Funding = () => {
         <button className="w-[80%] bg-myColor-green3 text-white mt-4 h-[50px] rounded-lg">
           펀딩하기
         </button>
-        <div className="flex flex-row w-[100%] mt-4 ">
-          {[1, 2, 3].map((value) => {
+        <div className="flex flex-row flex-wrap w-[100%] mt-4 ">
+          {[1, 2, 3, 4, 5].map((value) => {
             return (
-              <div className="w-[100%]" key={value}>
+              <div key={value} className="w-[30%] h-[200px] m-1 ">
                 <FundingProfile />
               </div>
             );
