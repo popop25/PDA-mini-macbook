@@ -4,7 +4,10 @@ import Login from "../Home/Login";
 import Signup from "../Home/Signup";
 import SandwichLayout from "../Components/SandwichLayout";
 import DefaultLayout from "../Components/DefaultLayout";
-import ComponentFooter from "../Components/Common/ComponentFooter";import User from "../Components/Common/User";
+import Main from "../Main/Main";
+import Product from "../Product/Main";
+import WishList from "../WishList/Main";
+import User from "../Components/Common/User";
 import ModalComp from "../Components/Common/Modal";
 
 export const mainRoutes = [
@@ -25,14 +28,21 @@ export const mainRoutes = [
         element: <Signup />,
       },
       {
-        path: "/footer",
-        index: true,
-        element: <ComponentFooter />,
-      },
-      {
         path: "",
         element: <SandwichLayout />,
         children: [
+          {
+            path: "/main",
+            element: <Main />,
+          },
+          {
+            path: "/product",
+            element: <Product />,
+          },
+          {
+            path: "/wish",
+            element: <WishList />,
+          },
           {
             path: "/user",
             element: <User />
@@ -40,7 +50,7 @@ export const mainRoutes = [
           {
             path: "/modal",
             element: <ModalComp />
-          }
+          },
         ],
       },
     ],
