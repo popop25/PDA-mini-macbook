@@ -18,9 +18,9 @@ const Main = () => {
         targetFundingAmount={21234}
         currentFundingAmount={15003}
         remainDays={1}
-        customWidth="w-[300px]"
-        customHeight="h-[100px]"
-        customProgressBarWidth="w-[280px]"
+        customWidth="w-[500px]"
+        customHeight="h-[200px]"
+        customProgressBarWidth="w-[480px]"
       />
     </div>
   );
