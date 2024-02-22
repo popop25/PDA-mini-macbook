@@ -46,10 +46,5 @@
   "devDependencies": {
     "tailwindcss": "^3.4.1"
   },
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:8080",
-      "changeOrigin": true
-    }
-  }
+  "proxy": "http://localhost:8080"
 }
