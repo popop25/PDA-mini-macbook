@@ -10,6 +10,8 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
+console.log(process.env.DB_URL);
+
 mongoose
   .connect(
     process.env.DB_URL
