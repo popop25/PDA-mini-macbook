@@ -5,8 +5,8 @@ import { Card } from 'flowbite-react';
 export default function WishList({imageUrl, brandImageUrl, brandName, title, price}) {
     return (
         <Card className="max-w-lg">
-            <div class="flex" className="gap-2.5">
-                <div className="w-[300px]" >
+            <div style={{display: "flex", gap:"10px"}}>
+                <div style={{width:"280px"}}>
                     {imageUrl && <img src={imageUrl} className="w-full h-auto mb-3" alt='product'/>}
                     <div className="flex items-center mb-3">
                         {brandImageUrl && <img src={brandImageUrl} alt="Brand Logo" className="h-6 w-6 mr-2" />}
@@ -14,7 +14,7 @@ export default function WishList({imageUrl, brandImageUrl, brandName, title, pri
                     </div>
                 </div>
                 <div style={{textAlign:"left"}}>
-                    <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">
+                    <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white" style={{marginBottom:"5px"}}>
                         {title}
                     </h5>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
@@ -27,6 +27,3 @@ export default function WishList({imageUrl, brandImageUrl, brandName, title, pri
 
     );
 }
-
-
-
