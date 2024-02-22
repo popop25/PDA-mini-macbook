@@ -1,7 +1,9 @@
 import React from "react";
 import FundingProgress from "../Components/Funding/FundingProgress";
 import { Progress } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 const Main = () => {
+  const navigate = useNavigate();
   return (
     <div className="h-[100vh]">
       Main
@@ -22,6 +24,7 @@ const Main = () => {
         customHeight="h-[200px]"
         customProgressBarWidth="w-[480px]"
       />
+      <button onClick={() => navigate("/funding/11111")}>펀딩하기</button>
     </div>
   );
 };
