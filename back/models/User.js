@@ -6,17 +6,26 @@ const userSchema = new mongoose.Schema(
     userEmail: {
       type: String,
       unique: true,
+      require: true,
     },
-    userPassword: String,
+    userPassword: {
+      type: String,
+      require: true,
+    },
     nickName: {
       type: String,
       unique: true,
+      require: true,
     },
     phoneNumber: {
       type: String,
       unique: true,
+      require: true,
     },
-    birthDay: Date,
+    birthDay: {
+      type: Date,
+      require: true,
+    },
     friendList: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "User",
