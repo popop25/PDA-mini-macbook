@@ -9,25 +9,26 @@ import {
 
 export default function ComponentFooter() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="flex-grow">
-        {/* 여기에 페이지의 나머지 내용을 넣으세요. 이 부분이 화면을 채우며 footer를 아래로 밀어냅니다. */}
-      </div>
+    <div className="flex flex-col p-1 mt-8">
       {/* Footer 부분 */}
       <Footer container>
-        <div className="w-full">
+        <div className="w-full p-1">
+          {" "}
+          {/* 상단과 하단의 패딩을 줄임 */}
           <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
             <div>
               <Footer.Brand
                 src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
                 alt="Logo"
-                height="76px"
-                width="76px"
+                height="80px" // 로고 크기 조정
+                width="80px"
               />
             </div>
-            <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
+            <div className="grid grid-cols-4 gap-4 sm:gap-4 sm:mt-0">
+              {" "}
+              {/* 간격과 마진 조정 */}
               <div>
-                <Footer.Title title="about" />
+                <Footer.Title title="About" />
                 <Footer.LinkGroup col>
                   <Footer.Link href="#">Flowbite</Footer.Link>
                   <Footer.Link href="#">Tailwind CSS</Footer.Link>
@@ -50,9 +51,13 @@ export default function ComponentFooter() {
             </div>
           </div>
           <Footer.Divider />
-          <div className="w-full sm:flex sm:items-center sm:justify-between">
+          <div className="w-full flex items-center justify-between py-2">
+            {" "}
+            {/* 패딩 조정 */}
             <Footer Copyright href="#" by="Flowbite™" year={2022} />
-            <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+            <div className="flex space-x-4">
+              {" "}
+              {/* 아이콘 간격 조정 */}
               <Footer.Icon href="#" icon={BsFacebook} />
               <Footer.Icon href="#" icon={BsInstagram} />
               <Footer.Icon href="#" icon={BsTwitter} />
