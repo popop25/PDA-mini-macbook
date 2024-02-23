@@ -5,15 +5,15 @@ export default function User({ friend }) {
   const day = friend.birthDay.slice(4); // 생년월일에서 일 추출
 
   return (
-    <Card className="gap-4 hover:bg-gray-100 flex-row items-center border-none py-2">
+    <Card className="gap-4 hover:bg-gray-100 hover:cursor-pointer flex-row items-center border-none py-2">
       <img
         className="w-12 h-12 object-cover rounded-full ms-8"
         src={friend.profileImg}
         alt=""
       />
       <span className="me-8">
-        <Card.Text>{friend.nickName}</Card.Text>
-        <Card.Text className="text-slate-500">
+        <Card.Text className="text-xl">{friend.nickName}</Card.Text>
+        <Card.Text className="text-slate-500 text-lg">
           {month}월 {day}일
         </Card.Text>
       </span>
