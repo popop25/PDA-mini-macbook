@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "flowbite-react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const baseUrl = "http://localhost:3001/api/product"; // URL에 오타 수정("http:" -> "http://")
 
@@ -23,10 +25,13 @@ const Product = () => {
 
   return (
     <div className="container">
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4 place-items-center">
+      <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 place-items-center">
         {products.map((el) => (
           <Card
             key={el._id}
+            onClick={() => {
+              navigate(`/product/${el._id}`);
+            }}
             className="max-w-sm"
             imgAlt="Meaningful alt text for an image that is not purely decorative"
             imgSrc={el.imageUrl}
