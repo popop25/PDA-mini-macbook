@@ -6,9 +6,19 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import { Button, Navbar } from "flowbite-react";
+import { userInfoState } from "../../stores/auth";
+import { useRecoilState } from "recoil";
+import { AUTH_KEY } from "../../Home/Login";
 
 export default function Header() {
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const navigate = useNavigate();
+  const handleLogout = () => {
+    console.log("logout");
+    sessionStorage.setItem(AUTH_KEY, "");
+    setUserInfo({});
+    navigate("/");
+  };
   return (
     <div>
       <Navbar fluid rounded>
@@ -18,7 +28,7 @@ export default function Header() {
           </span>
         </Navbar.Brand>
         <div className="flex md:order-2">
-          {/* <Button>Get started</Button> */}
+          <Button onClick={handleLogout}>로그아웃</Button>
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
