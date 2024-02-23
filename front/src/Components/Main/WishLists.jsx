@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import WishList from "../WishList";
 import { Button } from "react-bootstrap";
@@ -91,7 +92,7 @@ export default function WishLists() {
   function renderButton(fundingId) {
     return (
       <Button
-        className="text-myColor-green3 border-myColor-green3 hover:border-myColor-green2 hover:bg-white hover:text-myColor-green2 ms-auto"
+        className="text-myColor-green3 border-myColor-green3 hover:border-myColor-green2 hover:bg-white hover:text-myColor-green2 ms-auto mt-2"
         onClick={() => {
           navigate(`/funding/${fundingId}`);
         }}
@@ -101,19 +102,9 @@ export default function WishLists() {
     );
   }
   return (
-    <div
-      style={{
-        height: "94vh",
-        maxWidth: "66vw",
-        padding: "24px 0 0 0",
-        border: "1px solid gray",
-        display: "flex",
-        flexWrap: "wrap", // 자식 요소들을 자동으로 래핑하여 줄바꿈합니다.
-        overflowY: "auto",
-      }}
-    >
+    <div className="h-94vh max-w-66vw p-4 border border-gray-300 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
       <div className="font-bold text-2xl ps-8 pb-8">친구 위시리스트</div>
-      <div className="px-8">
+      <div className="px-8 min-w-96">
         {wishLists.map((wishList, index) => (
           <WishList
             key={index}
@@ -121,6 +112,7 @@ export default function WishLists() {
             renderButton={() => renderButton(wishList.productId)}
             useFundingProgress={true}
             useButton={true}
+            imgWidth={"600px"}
           />
         ))}
       </div>
