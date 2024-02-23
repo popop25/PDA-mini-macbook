@@ -15,7 +15,7 @@ export default function ComponentFooter() {
         <div className="w-full p-1">
           {" "}
           {/* 상단과 하단의 패딩을 줄임 */}
-          <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
+          <div className="grid justify-between w-full sm:flex sm:justify-between md:flex md:grid-cols-1">
             <div>
               <Footer.Brand
                 src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
@@ -51,10 +51,10 @@ export default function ComponentFooter() {
             </div>
           </div>
           <Footer.Divider />
-          <div className="w-full flex items-center justify-between py-2">
+          <div className="flex items-center justify-between w-full py-2">
             {" "}
             {/* 패딩 조정 */}
-            <Footer Copyright href="#" by="Flowbite™" year={2022} />
+            <Footer href="#" by="Flowbite™" year={2022} />
             <div className="flex space-x-4">
               {" "}
               {/* 아이콘 간격 조정 */}
