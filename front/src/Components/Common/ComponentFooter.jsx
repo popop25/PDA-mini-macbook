@@ -16,6 +16,8 @@ export default function ComponentFooter() {
             <Footer.Brand
               src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
               alt="Logo"
+              height="76px"
+              width="76px"
             />
           </div>
           <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
