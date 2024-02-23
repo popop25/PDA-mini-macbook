@@ -1,7 +1,5 @@
 import React from "react";
-import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
-// import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
