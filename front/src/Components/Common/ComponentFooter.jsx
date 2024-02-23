@@ -16,7 +16,7 @@ export default function ComponentFooter() {
       {/* Footer 부분 */}
       <Footer container>
         <div className="w-full">
-          <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
+          <div className="grid justify-between w-full sm:flex sm:justify-between md:flex md:grid-cols-1">
             <div>
               <Footer.Brand
                 src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
@@ -51,8 +51,8 @@ export default function ComponentFooter() {
           </div>
           <Footer.Divider />
           <div className="w-full sm:flex sm:items-center sm:justify-between">
-            <Footer Copyright href="#" by="Flowbite™" year={2022} />
-            <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+            <Footer href="#" by="Flowbite™" year={2022} />
+            <div className="flex mt-4 space-x-6 sm:mt-0 sm:justify-center">
               <Footer.Icon href="#" icon={BsFacebook} />
               <Footer.Icon href="#" icon={BsInstagram} />
               <Footer.Icon href="#" icon={BsTwitter} />
