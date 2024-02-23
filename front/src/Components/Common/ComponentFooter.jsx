@@ -38,7 +38,7 @@ export default function ComponentFooter() {
                 <Footer.Title title="Team2" />
                 <Footer.LinkGroup col>
                   <Footer.Link href="#">정희수</Footer.Link>
-                  <Footer.Link href="#">박민지</Footer.Link>
+                  <Footer.Link href="#">박지민</Footer.Link>
                 </Footer.LinkGroup>
               </div>
               <div>
