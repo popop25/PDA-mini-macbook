@@ -45,10 +45,10 @@ export default function ModalComp() {
   };
 
   return (
-    <div style={{ height: "100vh" }}>
-      <div className="flex flex-wrap gap-4">
+    <div className="flex flex-col items-center ">
+      <div className="flex flex-wrap gap-4 w-[100%] items-center flex-col">
         <Button
-          className=" bg-myColor-green3 border-none hover:bg-myColor-green2"
+          className=" bg-myColor-green3 border-none hover:bg-myColor-green2 w-[90%]"
           onClick={() => setOpenModal(true)}
         >
           펀딩하기
@@ -107,12 +107,12 @@ export default function ModalComp() {
           <div className="d-flex">
             <Button
               onClick={() => handleFundClick()}
-              className="bg-myColor-green3 border-none hover:bg-myColor-green2"
+              className="border-none bg-myColor-green3 hover:bg-myColor-green2"
             >
               후원하기
             </Button>
             <Button
-              className="text-myColor-green3 border-myColor-green3 hover:border-myColor-green2 hover:bg-white hover:text-myColor-green2 ml-2"
+              className="ml-2 text-myColor-green3 border-myColor-green3 hover:border-myColor-green2 hover:bg-white hover:text-myColor-green2"
               onClick={() => setOpenModal(false)}
             >
               취소

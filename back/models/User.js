@@ -6,25 +6,25 @@ const userSchema = new mongoose.Schema(
     userEmail: {
       type: String,
       unique: true,
-      require: true,
+      required: true,
     },
     userPassword: {
       type: String,
-      require: true,
+      required: true,
     },
     nickName: {
       type: String,
       unique: true,
-      require: true,
+      required: true,
     },
     phoneNumber: {
       type: String,
       unique: true,
-      require: true,
+      required: true,
     },
     birthDay: {
       type: Date,
-      require: true,
+      required: true,
     },
     friendList: {
       type: [mongoose.Schema.Types.ObjectId],
@@ -40,7 +40,13 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-userSchema.statics.signUp = async function (userEmail, userPassword, nickName) {
+userSchema.statics.signUp = async function (
+  userEmail,
+  userPassword,
+  nickName,
+  phoneNumber,
+  birthDay
+) {
   const salt = await bcrypt.genSalt();
   console.log(salt);
   try {
@@ -49,11 +55,15 @@ userSchema.statics.signUp = async function (userEmail, userPassword, nickName) {
       userEmail: userEmail,
       userPassword: hashedPassword,
       nickName: nickName,
+      phoneNumber,
+      birthDay,
     });
     return {
       _id: user._id,
       userEmail: user.userEmail,
       nickName: user.nickName,
+      phoneNumber: user.phoneNumber,
+      birthDay: user.birthDay,
     };
   } catch (err) {
     throw err;
