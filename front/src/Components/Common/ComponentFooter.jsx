@@ -28,24 +28,24 @@ export default function ComponentFooter() {
               {" "}
               {/* 간격과 마진 조정 */}
               <div>
-                <Footer.Title title="About" />
+                <Footer.Title title="Team1" />
                 <Footer.LinkGroup col>
-                  <Footer.Link href="#">Flowbite</Footer.Link>
-                  <Footer.Link href="#">Tailwind CSS</Footer.Link>
+                  <Footer.Link href="#">김영석</Footer.Link>
+                  <Footer.Link href="#">정우성</Footer.Link>
+                </Footer.LinkGroup>
+              </div>
+              <div>
+                <Footer.Title title="Team2" />
+                <Footer.LinkGroup col>
+                  <Footer.Link href="#">정희수</Footer.Link>
+                  <Footer.Link href="#">박민지</Footer.Link>
                 </Footer.LinkGroup>
               </div>
               <div>
                 <Footer.Title title="Follow us" />
                 <Footer.LinkGroup col>
                   <Footer.Link href="#">Github</Footer.Link>
-                  <Footer.Link href="#">Discord</Footer.Link>
-                </Footer.LinkGroup>
-              </div>
-              <div>
-                <Footer.Title title="Legal" />
-                <Footer.LinkGroup col>
-                  <Footer.Link href="#">Privacy Policy</Footer.Link>
-                  <Footer.Link href="#">Terms & Conditions</Footer.Link>
+                  <Footer.Link href="#">Notion</Footer.Link>
                 </Footer.LinkGroup>
               </div>
             </div>
