@@ -1,9 +1,12 @@
 import React from "react";
 import { Card } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Product = () => {
+  const navigate = useNavigate();
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <Link to={"/product/123"} className="grid grid-cols-4 gap-4">
       <Card
         className="max-w-sm"
         imgAlt="Meaningful alt text for an image that is not purely decorative"
@@ -17,7 +20,7 @@ const Product = () => {
         </h5>
         <p className="font-normal text-gray-700 dark:text-gray-400">price</p>
       </Card>
-    </div>
+    </Link>
   );
 };
 
