@@ -12,4 +12,16 @@ router.get("/", async (req, res, next) => {
     });
 });
 
+router.get("/:productId", (req, res, next) => {
+  Product.find({
+    _id: req.params.productId,
+  })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 module.exports = router;

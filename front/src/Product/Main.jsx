@@ -6,22 +6,23 @@ import { useNavigate } from "react-router-dom";
 const Product = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const baseUrl = "http://localhost:3001/api/product"; // URL에 오타 수정("http:" -> "http://")
+  const baseUrl = "http://localhost:3001/api/product";
 
-  // useEffect를 사용하여 컴포넌트 마운트 시 데이터를 가져옵니다.
   useEffect(() => {
-    // 비동기 데이터 로딩 함수
     const fetchData = async () => {
       try {
         const response = await axios.get(baseUrl);
-
         setProducts(response.data.products);
       } catch (error) {
         console.error("There was an error!", error);
       }
     };
     fetchData();
-  }, []); // baseUrl이 변경될 때마다 함수를 다시 실행
+  }, []);
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
+  };
 
   return (
     <div className="container">
@@ -34,17 +35,18 @@ const Product = () => {
             }}
             className="max-w-sm"
             imgAlt="Meaningful alt text for an image that is not purely decorative"
+
             imgSrc={el.imageUrl}
           >
-            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-teal-400">
               {el.brandName}
             </h5>
-            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <p className="text-sm font-bold tracking-tight text-transparent bg-clip-text text-yellow-500">
               {el.title}
-            </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              {el.price}
             </p>
+            <h2 className="font-normal text-gray-700 dark:text-gray-400">
+              ₩{formatPrice(el.price)}
+            </h2>
           </Card>
         ))}
       </div>
