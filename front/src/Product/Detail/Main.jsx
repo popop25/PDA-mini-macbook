@@ -6,11 +6,14 @@ import heart_full from "../../imgs/heart_full.svg";
 import axios from "axios";
 import { fetchProductDetail } from "../../Api/ProductDetailApi";
 
-
 const ProductDetail = () => {
   const { productId } = useParams();
   const [productDetail, setProductDetail] = useState([]);
   const [isHeart, setIsHeart] = useState(false);
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
+  };
 
   const onWishClick = () => {
     if (isHeart) {
@@ -58,7 +61,7 @@ const ProductDetail = () => {
               </span>
             </div>
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
-              {productDetail[0]?.price}₩
+              ₩{formatPrice(productDetail[0]?.price)}
             </span>
             <Button onClick={onWishClick}>
               위시리스트 담기
