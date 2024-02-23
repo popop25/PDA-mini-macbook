@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import WishList from '../Components/WishList';
-import { Row, Col } from 'react-bootstrap';
-import { fetchWishes } from '../Api/WishApi';
+import WishList from "../Components/WishList";
+import { Row, Col } from "react-bootstrap";
+import { fetchWishes } from "../Api/WishApi";
 
 export default function WishListPage() {
   const [myWishList, setMyWishList] = useState([]);
@@ -27,9 +27,9 @@ export default function WishListPage() {
 
   return (
     <>
-      <h2 className='px-5 pt-5 pb-2 text-[20px] text'>나의 위시리스트</h2>
+      <h2 className="px-5 pt-5 pb-2 text-[20px] text">나의 위시리스트</h2>
 
-      <div className='p-5'>
+      <div className="p-5">
         <div className="grid gap-4 grid-cols-3">
           {/* {myWishList.map((myWish, index) => (
             <WishList key={index}
@@ -98,5 +98,5 @@ export default function WishListPage() {
         </div>
       </div>
     </>
-  )
+  );
 }
