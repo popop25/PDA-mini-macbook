@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Button, Avatar } from "flowbite-react";
-import heart from "../../Imgs/heart.svg";
-import heart_full from "../../Imgs/heart_full.svg";
+import heart from "../../imgs/heart.svg";
+import heart_full from "../../imgs/heart_full.svg";
 
 const ProductDetail = () => {
   const { productId } = useParams();
