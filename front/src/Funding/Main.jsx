@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import FundingProgress from "../Components/Funding/FundingProgress";
 import FundingProfile from "../Components/Funding/FundingProfile";
+import ModalComp from "../Components/Common/Modal";
+import axios from "axios";
 
 const Funding = () => {
   const { fundingId } = useParams();
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = "http://localhost:3001/api/funding";
+      const response = await axios.post(url);
+      console.log(response);
+    };
+    fetchData();
+  }, []);
   const nickName = "정정정";
   const title = "교촌치킨 허니콤보";
   const imageUrl =
@@ -23,10 +33,13 @@ const Funding = () => {
         <div className="bg-[#f5f7fb] w-[80%] flex justify-center rounded-lg">
           <FundingProgress customHeight="h-[84px]" />
         </div>
-        <button className="w-[80%] bg-myColor-green3 text-white mt-4 h-[50px] rounded-lg">
+        {/* <button className="w-[80%] bg-myColor-green3 text-white mt-4 h-[50px] rounded-lg">
           펀딩하기
-        </button>
-        <div className="flex flex-row flex-wrap w-[100%] mt-4 ">
+        </button> */}
+        <div className="w-[90%] max-w-[700px] mt-3">
+          <ModalComp />
+        </div>
+        <div className="flex flex-row flex-wrap w-[100%] justify-center mt-4">
           {[1, 2, 3, 4, 5].map((value) => {
             return (
               <div key={value} className="w-[30%] h-[200px] m-1 ">
