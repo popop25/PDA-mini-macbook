@@ -6,6 +6,7 @@ import heart_full from "../../imgs/heart_full.svg";
 import axios from "axios";
 import { fetchProductDetail } from "../../Api/ProductDetailApi";
 
+
 const ProductDetail = () => {
   const { productId } = useParams();
   const [productDetail, setProductDetail] = useState([]);
