@@ -14,7 +14,6 @@ const Product = () => {
         const response = await axios.get(baseUrl);
 
         setProducts(response.data.products);
-        console.log(response);
       } catch (error) {
         console.error("There was an error!", error);
       }
@@ -24,7 +23,7 @@ const Product = () => {
 
   return (
     <div className="container">
-      <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 place-items-center">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4 place-items-center">
         {products.map((el) => (
           <Card
             key={el._id}
