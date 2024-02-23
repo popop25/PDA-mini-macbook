@@ -1,11 +1,19 @@
 import axios from "axios";
 import https from "https";
 import crypto from "crypto";
+import { MongoClient } from "mongodb";
+import fs from "fs";
 
 async function fetchPage() {
   console.log("hi");
+  const uri =
+    "mongodb+srv://admin:admin@cluster0.jtdvjdz.mongodb.net/?retryWrites=true&w=majority";
+  const client = new MongoClient(uri);
+  const database = client.db("test");
+  const products = database.collection("products");
+
   const url =
-    "https://gift.kakao.com/a/v2/best/delivery/all?page=4&size=30&_=1708060654865";
+    "https://gift.kakao.com/a/v2/best/delivery/all?page=3&size=30&_=1708060654865";
   try {
     const makeRequest = (url) => {
       return axios({
@@ -32,8 +40,23 @@ async function fetchPage() {
       itemList.push(itemResponse.data);
     }
 
-    console.log(itemData); // 전체화면에 나오는 item 배열
+    const itemResponse = itemList.map((el) => ({
+      title: el.itemDetails.item.displayName,
+      imageUrl: el.itemDetails.item.imageUrl,
+      productId: el.itemDetails.item.id,
+      productType: el.itemDetails.item.itemTypeDetail.description,
+      detailName: el.itemDetails.item.name,
+      detailImageUrl: el.itemDetails.item.imageUrl,
+      price: el.itemDetails.item.basicPrice,
+      brandName: el.itemDetails.brand.name,
+      brandImageUrl: el.itemDetails.brand.thumbnailUrl,
+    }));
+
+    const insert = await products.insertMany(itemResponse);
+
+    console.log(insert); // 전체화면에 나오는 item 배열
     console.log(itemList); // item마다 상세정보 배열
+    // fs.writeFileSync("./test.txt", JSON.stringify(itemList, null, 2));
   } catch (error) {
     console.log(error);
   }

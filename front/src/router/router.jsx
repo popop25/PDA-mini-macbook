@@ -11,6 +11,7 @@ import WishList from "../WishList/Main";
 import Friends from "../Components/Main/Friends";
 import ModalComp from "../Components/Common/Modal";
 import WishLists from "../Components/Main/WishLists";
+import ProductDetail from "../Product/Detail/Main";
 
 export const mainRoutes = [
   {
@@ -40,6 +41,10 @@ export const mainRoutes = [
           {
             path: "/product",
             element: <Product />,
+          },
+          {
+            path: "/product/:productId",
+            element: <ProductDetail />,
           },
           {
             path: "/wish",

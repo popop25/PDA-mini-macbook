@@ -1,12 +1,15 @@
-// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
   mode: "jit",
-  purge: ["./public/**/*.html", "./src/**/*.{js,jsx,ts,tsx,vue}"],
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    // ...
+    "./public/**/*.html",
+    "./src/**/*.{js,jsx,ts,tsx,vue}",
     "node_modules/flowbite-react/lib/esm/**/*.js",
+  ],
+  plugins: [
+    // ...
+    require("flowbite/plugin"),
   ],
   theme: {
     extend: {

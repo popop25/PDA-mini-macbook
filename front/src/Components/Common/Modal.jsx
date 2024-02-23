@@ -8,14 +8,23 @@ export default function ModalComp() {
   const [openModal, setOpenModal] = useState(false);
   const [amount, setAmount] = useState(0);
   const [isFundingPossible, setIsFundingPossible] = useState(true);
+  const [openAmountAlert, setOpenAmountAlert] = useState(false);
   const handleFundClick = () => {
-    // 펀딩 api 요청을 보낸다
+    // 입력된 후원 금액이 숫자인지 확인
+    if (!isNaN(amount) && parseFloat(amount) >= 0) {
+      // 펀딩 api 요청을 보낸다
 
-    // 1. 펀딩이 가능한 경우
-    // setOpenModal(false)
+      // 1. 펀딩이 가능한 경우
+      // setOpenModal(false)
 
-    // 2. 펀딩 불가능한 경우
-    setIsFundingPossible(false);
+      // 2. 펀딩 불가능한 경우
+      setIsFundingPossible(false);
+      setOpenAmountAlert(false); // Alert를 닫습니다.
+    } else {
+      // 숫자가 아니거나 0 이상의 숫자가 아닌 경우
+      setIsFundingPossible(true); // 기존 Alert 상태 초기화
+      setOpenAmountAlert(true); // Alert 표시 상태 업데이트
+    }
   };
 
   // 예시입니다.
@@ -56,22 +65,15 @@ export default function ModalComp() {
             <User friend={friend}></User>
           </Modal.Title>
         </Modal.Header>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            margin: "6vh auto 0",
-            gap: "10px",
-          }}
-        >
+        <div className="flex flex-col items-center mt-6">
           <img
             src={product.imgUrl}
+            className="hover:cursor-pointer hover:bg-gray-100"
             style={{ width: "200px" }}
             alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDzQJl-kKS5ov3MyAmp24jPxktGZJt9TAjDA&usqp=CAU"
           />
-          <div className="text-gray-400 ">{product.brand}</div>
-          <div>{product.title}</div>
+          <div className=" text-gray-400">{product.brand}</div>
+          <div className="font-bold">{product.title}</div>
         </div>
         <Modal.Body>
           <div
@@ -96,6 +98,9 @@ export default function ModalComp() {
           </div>
         </Modal.Body>
         <Modal.Footer className="d-flex flex-column align-items-center">
+          {openAmountAlert && (
+            <Alert variant="warning">0 이상의 금액을 입력해주세요!</Alert>
+          )}
           {!isFundingPossible && (
             <Alert variant="warning">후원 가능한 금액을 초과했어요!</Alert>
           )}
