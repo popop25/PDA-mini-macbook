@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "flowbite-react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const baseUrl = "http://localhost:3001/api/product";
 
@@ -23,13 +25,17 @@ const Product = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-yellow-100 to-green-100 p-6">
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4 place-items-center w-full max-w-6xl">
+    <div className="container">
+      <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 place-items-center">
         {products.map((el) => (
           <Card
             key={el._id}
-            className="max-w-sm w-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl"
-            imgAlt="Product image"
+            onClick={() => {
+              navigate(`/product/${el._id}`);
+            }}
+            className="max-w-sm"
+            imgAlt="Meaningful alt text for an image that is not purely decorative"
+
             imgSrc={el.imageUrl}
           >
             <h5 className="text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-teal-400">
