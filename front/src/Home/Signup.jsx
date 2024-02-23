@@ -1,6 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const baseUrl = "http://localhost:3001/api/users/signup";
+  const handleChangeState = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const [state, setState] = useState({
+    userEmail: "",
+    userPassword: "",
+    passwordCheck: "",
+    nickName: "",
+    phoneNumber: "",
+    birthDay: Date.now(),
+  });
+  const onClickSignUp = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(baseUrl, state);
+      console.log(response);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      alert("회원가입이 실패했습니다.");
+    }
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-yellow-100 to-green-100">
       <div className="max-w-md w-full mx-auto p-8 bg-white rounded-lg shadow-lg">
@@ -16,18 +48,20 @@ const Signup = () => {
         <form className="mt-8 space-y-6" action="#" method="POST">
           <div>
             <label
-              htmlFor="email"
+              htmlFor="userEmail"
               className="block text-sm font-medium leading-5 text-gray-700"
             >
               Email address
             </label>
             <div className="mt-1 relative rounded-md shadow-sm">
               <input
-                id="email"
-                name="email"
+                id="userEmail"
+                name="userEmail"
                 type="email"
-                autoComplete="email"
+                value={state.userEmail}
+                autoComplete="userEmail"
                 required
+                onChange={handleChangeState}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="you@example.com"
               />
@@ -44,17 +78,19 @@ const Signup = () => {
 
           <div>
             <label
-              htmlFor="password"
+              htmlFor="userPassword"
               className="block text-sm font-medium leading-5 text-gray-700"
             >
               Password
             </label>
             <div className="mt-1">
               <input
-                id="password"
-                name="password"
+                id="userPassword"
+                name="userPassword"
                 type="password"
-                autoComplete="new-password"
+                onChange={handleChangeState}
+                value={state.userPassword}
+                autoComplete="new-userPassword"
                 required
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="Enter your password"
@@ -74,6 +110,7 @@ const Signup = () => {
                 id="passwordCheck"
                 name="passwordCheck"
                 type="password"
+                onChange={handleChangeState}
                 autoComplete="new-password"
                 required
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -88,13 +125,15 @@ const Signup = () => {
             </label>
             <div className="mt-1 mb-2">
               <input
-                id="nickname"
-                name="nickname"
+                id="nickName"
+                name="nickName"
                 type="text"
-                autoComplete="nickname"
+                value={state.value}
+                autoComplete="nickName"
                 required
+                onChange={handleChangeState}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Enter your nickname"
+                placeholder="Enter your nickName"
               />
             </div>
             <label
@@ -110,6 +149,8 @@ const Signup = () => {
                 type="text"
                 autoComplete="phoneNumber"
                 required
+                value={state.phoneNumber}
+                onChange={handleChangeState}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="Enter your Phone Number: ex) 010-0000-0000"
               />
@@ -122,10 +163,12 @@ const Signup = () => {
             </label>
             <div className="mt-1">
               <input
-                id="dateOfBirth"
-                name="dateOfBirth"
+                id="birthDay"
+                name="birthDay"
+                value={state.birthDay}
                 type="date"
                 required
+                onChange={handleChangeState}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="yyyy-mm-dd"
               />
@@ -142,12 +185,12 @@ const Signup = () => {
               </Link>
             </div>
             <div>
-              <Link
-                to="/login"
+              <button
+                onClick={onClickSignUp}
                 className="inline-flex justify-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-yellow-300 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
               >
                 완료
-              </Link>
+              </button>
             </div>
           </div>
         </form>
