@@ -22,7 +22,7 @@ export default function WishListPage() {
 
   return (
     <>
-      <h2 className='px-5 pt-5 pb-2 text-[20px]'>나의 위시리스트</h2>
+      <h2 className='px-5 pt-5 pb-2 text-[20px] text'>나의 위시리스트</h2>
 
       <div className='p-5'>
         <div className="grid gap-4 grid-cols-3">
