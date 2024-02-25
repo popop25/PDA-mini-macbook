@@ -12,35 +12,36 @@ const ProductDetail = () => {
   const [isHeart, setIsHeart] = useState(false);
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "KRW",
+    }).format(price);
   };
 
   const onWishClick = () => {
-    if (isHeart) {
-      alert("위시리스트에서 삭제되었습니다.");
-    } else {
-      alert("위시리스트에 추가되었습니다.");
-    }
-    setIsHeart((prev) => !prev);
+    alert(
+      isHeart
+        ? "위시리스트에서 삭제되었습니다."
+        : "위시리스트에 추가되었습니다."
+    );
+    setIsHeart(!isHeart);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchProductDetail(productId);
-      console.log(response);
       setProductDetail(response);
     };
     fetchData();
-  }, []);
+  }, [productId]);
 
   const htmlCode = productDetail[0]?.productDetailDescription;
-
   const cleanCode = sanitizeHtml(htmlCode, {
     allowedTags: sanitizeHtml.defaults.allowedTags.concat([
       "img",
       "iframe",
       "video",
-    ]), // 'iframe', 'video' 태그 추가
+    ]),
     allowedAttributes: {
       ...sanitizeHtml.defaults.allowedAttributes,
       img: ["src", "alt", "data-animated", "data-origin-url"],
@@ -51,7 +52,7 @@ const ProductDetail = () => {
         "frameborder",
         "allowfullscreen",
         "allow",
-      ], // 'iframe' 태그에 대해 허용할 속성들 추가
+      ],
       video: [
         "src",
         "width",
@@ -60,23 +61,20 @@ const ProductDetail = () => {
         "autoplay",
         "loop",
         "muted",
-      ], // 'video' 태그에 대해 허용할 속성들 추가
+      ],
     },
   });
 
   return (
-    <div className="flex flex-col items-center justify-center mt-4 ">
-      <div className="flex flex-row flex-wrap justify-center">
-        <div className="flex justify-center items-center w-[400px] h-[350px]">
-          <Card
-            className="max-w-sm h-[350px] "
-            imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
-            imgSrc={productDetail[0]?.detailImageUrl}
-          ></Card>
-        </div>
-
-        <div>
-          <Card href="#" className=" max-w-sm w-[400px] h-[350px] ">
+    <div className="flex flex-col items-center justify-center mt-4 w-full bg-gradient-to-r from-yellow-100 to-green-100">
+      <div className="flex flex-row justify-center items-start mb-20 gap-4 w-full max-w-4xl">
+        <Card
+          className="w-[400px] h-[350px]"
+          imgAlt="Product image"
+          imgSrc={productDetail[0]?.detailImageUrl}
+        />
+        <div className="max-w-sm w-[400px] flex flex-col justify-start">
+          <Card className="h-[350px]">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {productDetail[0]?.detailName}
             </h5>
@@ -84,7 +82,7 @@ const ProductDetail = () => {
               <Avatar
                 className="w-[30px] h-[30px]"
                 img={productDetail[0]?.brandImageUrl}
-                alt="avatar of Jese"
+                alt="Brand logo"
                 rounded
               />
               <span className="ml-3 mr-2 rounded bg-cyan-100 px-2.5 py-0.5 text-xs font-semibold text-cyan-800 dark:bg-cyan-200 dark:text-cyan-800">
@@ -92,27 +90,23 @@ const ProductDetail = () => {
               </span>
             </div>
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
-              ₩{formatPrice(productDetail[0]?.price)}
+              {formatPrice(productDetail[0]?.price)}
             </span>
-            <Button onClick={onWishClick}>
+            <Button onClick={onWishClick} className="mt-4">
               위시리스트 담기
-              <div className="ml-2" />
-              {isHeart ? (
-                <img
-                  src={heart_full}
-                  alt="이미지 오류"
-                  width={15}
-                  height={15}
-                />
-              ) : (
-                <img src={heart} alt="이미지 오류" width={15} height={15} />
-              )}
+              <img
+                className="ml-2"
+                src={isHeart ? heart_full : heart}
+                alt="위시리스트 아이콘"
+                width={15}
+                height={15}
+              />
             </Button>
           </Card>
-          <div>
-            <div dangerouslySetInnerHTML={{ __html: cleanCode }}></div>
-          </div>
         </div>
+      </div>
+      <div className="w-full max-w-4xl mt-6">
+        <div dangerouslySetInnerHTML={{ __html: cleanCode }}></div>
       </div>
     </div>
   );
