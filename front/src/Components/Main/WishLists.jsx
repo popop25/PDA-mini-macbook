@@ -9,12 +9,15 @@ export default function WishLists() {
     // wishList를 api요청으로 받아온다. 받아온 후 각 wishlist에 현재 받은 금액을 저장한다.
   }, []);
   const remainDays = 3;
+
+  // funding ID 추가..?
   const [wishLists, setwishLists] = useState([
     {
       title: "고디바 다크 초콜릿 케이크",
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240102083150_cea5f5c4354544818ae6ef6f05577aa4.jpeg",
       productId: "65dabcd77ab394f8f65c348b",
+      fundingId: "65db4696ba0cabd8c9cee03b",
       detailName: "고디바 다크 초콜릿 케이크",
       price: 39000,
       totalFunded: 36000,
@@ -28,6 +31,7 @@ export default function WishLists() {
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240208175222_56f84a3432394905b35fbf329fa68bf1.png",
       productId: "65dabcd77ab394f8f65c348b",
+      fundingId: "65db4696ba0cabd8c9cee03b",
       detailName:
         '"독일 명품 비타민" 오쏘몰 이뮨 멀티비타민&미네랄 7입 - Gift Box 증정 (공식수입)',
       price: 38000,
@@ -41,6 +45,7 @@ export default function WishLists() {
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240102083150_cea5f5c4354544818ae6ef6f05577aa4.jpeg",
       productId: "65dabcd77ab394f8f65c348b",
+      fundingId: "65db4696ba0cabd8c9cee03b",
       detailName: "고디바 다크 초콜릿 케이크",
       price: 39000,
       totalFunded: 12000,
@@ -54,6 +59,7 @@ export default function WishLists() {
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240208175222_56f84a3432394905b35fbf329fa68bf1.png",
       productId: "65dabcd77ab394f8f65c348b",
+      fundingId: "65db4696ba0cabd8c9cee03b",
       detailName:
         '"독일 명품 비타민" 오쏘몰 이뮨 멀티비타민&미네랄 7입 - Gift Box 증정 (공식수입)',
       price: 38000,
@@ -67,6 +73,7 @@ export default function WishLists() {
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240102083150_cea5f5c4354544818ae6ef6f05577aa4.jpeg",
       productId: "65dabcd77ab394f8f65c348b",
+      fundingId: "65db4696ba0cabd8c9cee03b",
       detailName: "고디바 다크 초콜릿 케이크",
       price: 39000,
       totalFunded: 2000,
@@ -80,6 +87,7 @@ export default function WishLists() {
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240208175222_56f84a3432394905b35fbf329fa68bf1.png",
       productId: "65dabcd77ab394f8f65c348b",
+      fundingId: "65db4696ba0cabd8c9cee03b",
       detailName:
         '"독일 명품 비타민" 오쏘몰 이뮨 멀티비타민&미네랄 7입 - Gift Box 증정 (공식수입)',
       price: 38000,
@@ -109,7 +117,7 @@ export default function WishLists() {
           <WishList
             key={index}
             {...wishList}
-            renderButton={() => renderButton(wishList.productId)}
+            renderButton={() => renderButton(wishList.fundingId)}
             useFundingProgress={true}
             useButton={true}
             imgWidth={"600px"}
