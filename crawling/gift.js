@@ -50,6 +50,7 @@ async function fetchPage() {
       price: el.itemDetails.item.basicPrice,
       brandName: el.itemDetails.brand.name,
       brandImageUrl: el.itemDetails.brand.thumbnailUrl,
+      productDetailDescription: el.itemDetails.item.productDetailDescription,
     }));
 
     const insert = await products.insertMany(itemResponse);

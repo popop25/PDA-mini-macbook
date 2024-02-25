@@ -9,6 +9,7 @@ import Product from "../Product/Main";
 import Funding from "../Funding/Main";
 import WishList from "../WishList/Main";
 import ProductDetail from "../Product/Detail/Main";
+import DetailDescription from "../Product/Detail/DetailDescription";
 
 export const mainRoutes = [
   {
@@ -50,6 +51,10 @@ export const mainRoutes = [
           {
             path: "/funding/:fundingId",
             element: <Funding />,
+          },
+          {
+            path: "/test",
+            element: <DetailDescription />,
           },
         ],
       },

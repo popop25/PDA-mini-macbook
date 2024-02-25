@@ -2,20 +2,33 @@ import React, { useState } from "react";
 import { HiInformationCircle } from "react-icons/hi";
 import { TextInput } from "flowbite-react";
 import { Button, Modal, Alert } from "react-bootstrap";
+import { fetchFundingPost } from "../../Api/Funding";
 import User from "./User";
+import { userInfoState } from "../../stores/auth";
+import { useRecoilState } from "recoil";
 
-export default function ModalComp() {
+export default function ModalComp({ fundingId, productDetail, userDetail }) {
   const [openModal, setOpenModal] = useState(false);
   const [amount, setAmount] = useState(0);
   const [isFundingPossible, setIsFundingPossible] = useState(true);
   const [openAmountAlert, setOpenAmountAlert] = useState(false);
-  const handleFundClick = () => {
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const handleFundClick = async () => {
+    // console.log(userInfo._id, ":", amount, ":", fundingId);
+    const userId = sessionStorage.getItem("AUTH_USER");
+    console.log(userId);
     // 입력된 후원 금액이 숫자인지 확인
     if (!isNaN(amount) && parseFloat(amount) >= 0) {
       // 펀딩 api 요청을 보낸다
 
       // 1. 펀딩이 가능한 경우
       // setOpenModal(false)
+      const response = await fetchFundingPost(fundingId, {
+        userId: userId._id,
+        amount: Number(amount),
+      });
+      console.log(response);
+      window.location.reload();
 
       // 2. 펀딩 불가능한 경우
       setIsFundingPossible(false);
@@ -62,18 +75,18 @@ export default function ModalComp() {
       >
         <Modal.Header closeButton className="mx-auto">
           <Modal.Title id="contained-modal-title-vcenter">
-            <User friend={friend}></User>
+            <User friend={userDetail}></User>
           </Modal.Title>
         </Modal.Header>
         <div className="flex flex-col items-center mt-6">
           <img
-            src={product.imgUrl}
+            src={productDetail?.detailImageUrl}
             className="hover:cursor-pointer hover:bg-gray-100"
             style={{ width: "200px" }}
             alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDzQJl-kKS5ov3MyAmp24jPxktGZJt9TAjDA&usqp=CAU"
           />
-          <div className=" text-gray-400">{product.brand}</div>
-          <div className="font-bold">{product.title}</div>
+          <div className="text-gray-400 ">{productDetail?.brandName}</div>
+          <div className="font-bold">{productDetail?.title}</div>
         </div>
         <Modal.Body>
           <div

@@ -12,6 +12,9 @@ export default function WishList({
   price,
   totalFunded, // api로 펀딩정보 받아와 직접 계산해야한다
   remainDays,
+  customWidth,
+  customHeight,
+  customProgressBarWidth,
   renderButton, // 후원하기 버튼 생성함수
   useFundingProgress, // 펀딩 프로세스를 쓸것인가 - 메인화면용
   useButton, // 버튼을 사용할 것인가 - 메인화면용
@@ -19,7 +22,14 @@ export default function WishList({
 }) {
   const navigate = useNavigate();
   function handleCardClick() {
+    // console.log(e.value.target);
     navigate(`/product/${productId}`);
+  }
+
+  function handleButtonClick(e) {
+    // Handle button click here
+    // Stop the event propagation to prevent triggering the card click
+    e.stopPropagation();
   }
   return (
     <Card
@@ -45,7 +55,7 @@ export default function WishList({
             <img
               src={imageUrl}
               className="w-full h-auto mb-3"
-              style={{ width: imgWidth }}
+              style={{ width: imgWidth ? imgWidth : "" }}
               alt="product"
             />
           )}
@@ -54,22 +64,24 @@ export default function WishList({
               <img
                 src={brandImageUrl}
                 alt="Brand Logo"
-                className="h-8 w-8 mr-2"
+                className="w-8 h-8 mr-2"
               />
             )}
-            <h6 className="text-sm text-center font-medium text-gray-700 dark:text-gray-400">
+            <h6 className="text-sm font-medium text-center text-gray-700 dark:text-gray-400">
               {brandName}
             </h6>
           </div>
         </div>
         <div style={{ textAlign: "left" }}>
           <h5
-            className="w-[400px] text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            className={`${
+              useButton ? "w-[400px]" : "w-[300px]"
+            } text-xl font-bold tracking-tight text-gray-900 dark:text-white`}
             style={{ marginBottom: "5px" }}
           >
             {title}
           </h5>
-          <p className="font-normal text-gray-700 dark:text-gray-400">
+          <p className="px-1 py-2 font-bold text-gray-700 dark:text-gray-400">
             {price} 원
           </p>
           {useFundingProgress && (
@@ -77,10 +89,15 @@ export default function WishList({
               targetFundingAmount={price}
               currentFundingAmount={totalFunded}
               remainDays={remainDays}
+              customWidth={customWidth}
+              customHeight={customHeight}
+              customProgressBarWidth={customProgressBarWidth}
             ></FundingProgress>
           )}
           {useButton && (
-            <div className=" flex justify-end"> {renderButton()}</div>
+            <div className="flex justify-end " onClick={handleButtonClick}>
+              {renderButton()}
+            </div>
           )}
         </div>
       </div>

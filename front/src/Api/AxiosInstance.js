@@ -22,11 +22,10 @@ export const afterLoginInstance = axios.create({
 // 요청 인터셉터
 afterLoginInstance.interceptors.request.use(
     function (config) {
-        // 요청이 전달되기 전에 헤더에 토큰 넣기
-        const jwt = sessionStorage.getItem(AUTH_KEY);
-        if (jwt) {
-            config.headers.Authorization = `Token ${jwt}`;
-        }
+            // 요청이 전달되기 전에 헤더에 토큰 넣기
+            const jwt = sessionStorage.getItem(AUTH_KEY);
+            const token = JSON.parse(jwt).token;
+            config.headers.authentication = `Token ${token}`;
         return config;
     },
     function (error) {
