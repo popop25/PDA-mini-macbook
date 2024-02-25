@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { Card, Button, Avatar } from "flowbite-react";
 import heart from "../../imgs/heart.svg";
 import heart_full from "../../imgs/heart_full.svg";
-import axios from "axios";
 import { fetchProductDetail } from "../../Api/ProductDetailApi";
+import sanitizeHtml from "sanitize-html";
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -32,6 +32,37 @@ const ProductDetail = () => {
     };
     fetchData();
   }, []);
+
+  const htmlCode = productDetail[0]?.productDetailDescription;
+
+  const cleanCode = sanitizeHtml(htmlCode, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+      "img",
+      "iframe",
+      "video",
+    ]), // 'iframe', 'video' 태그 추가
+    allowedAttributes: {
+      ...sanitizeHtml.defaults.allowedAttributes,
+      img: ["src", "alt", "data-animated", "data-origin-url"],
+      iframe: [
+        "src",
+        "width",
+        "height",
+        "frameborder",
+        "allowfullscreen",
+        "allow",
+      ], // 'iframe' 태그에 대해 허용할 속성들 추가
+      video: [
+        "src",
+        "width",
+        "height",
+        "controls",
+        "autoplay",
+        "loop",
+        "muted",
+      ], // 'video' 태그에 대해 허용할 속성들 추가
+    },
+  });
 
   return (
     <div className="flex flex-col items-center justify-center mt-4 ">
@@ -67,12 +98,20 @@ const ProductDetail = () => {
               위시리스트 담기
               <div className="ml-2" />
               {isHeart ? (
-                <img src={heart_full} width={15} height={15} />
+                <img
+                  src={heart_full}
+                  alt="이미지 오류"
+                  width={15}
+                  height={15}
+                />
               ) : (
-                <img src={heart} width={15} height={15} />
+                <img src={heart} alt="이미지 오류" width={15} height={15} />
               )}
             </Button>
           </Card>
+          <div>
+            <div dangerouslySetInnerHTML={{ __html: cleanCode }}></div>
+          </div>
         </div>
       </div>
     </div>
