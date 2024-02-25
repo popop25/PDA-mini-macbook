@@ -14,7 +14,7 @@ export default function User({ friend }) {
       />
       <span className="me-8">
         <Card.Text className="text-xl">{friend.nickName}</Card.Text>
-        <Card.Text className="text-slate-500 text-lg">
+        <Card.Text className="text-lg text-slate-500">
           {month}월 {day}일
         </Card.Text>
       </span>
