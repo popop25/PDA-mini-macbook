@@ -13,21 +13,49 @@ export default function ModalComp({ fundingId, productDetail, userDetail }) {
   const [isFundingPossible, setIsFundingPossible] = useState(true);
   const [openAmountAlert, setOpenAmountAlert] = useState(false);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
+  const formatAmount = (input) => {
+    // Remove existing commas and format the number
+    const formattedInput = input.replace(/,/g, "");
+    const numberWithCommas = formattedInput.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ","
+    );
+    return numberWithCommas;
+  };
+
+  const handleAmountChange = (e) => {
+    let inputAmount = e.target.value;
+
+    // Remove non-numeric characters
+    inputAmount = inputAmount.replace(/[^0-9]/g, "");
+
+    // Remove leading zeros
+    inputAmount = inputAmount.replace(/^0+/, "");
+
+    // Format the number with commas every three digits
+    const formattedAmount = inputAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    setAmount(formattedAmount);
+  };
+
   const handleFundClick = async () => {
     // console.log(userInfo._id, ":", amount, ":", fundingId);
     const userId = sessionStorage.getItem("AUTH_USER");
+    const numericAmount = parseFloat(amount.replace(/,/g, ""));
     console.log(userId);
+    console.log(numericAmount);
     // 입력된 후원 금액이 숫자인지 확인
-    if (!isNaN(amount) && parseFloat(amount) >= 0) {
+    if (!isNaN(numericAmount) && parseFloat(numericAmount) >= 0) {
       // 펀딩 api 요청을 보낸다
 
       // 1. 펀딩이 가능한 경우
-      // setOpenModal(false)
       const response = await fetchFundingPost(fundingId, {
         userId: userId._id,
-        amount: Number(amount),
+        amount: numericAmount,
       });
-      console.log(response);
+      console.log("fetchFundingPost:", response);
+      // setOpenModal(false);
       window.location.reload();
 
       // 2. 펀딩 불가능한 경우
@@ -99,7 +127,8 @@ export default function ModalComp({ fundingId, productDetail, userDetail }) {
           >
             <TextInput
               value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              // onChange={(e) => setAmount(e.target.value)}
+              onChange={handleAmountChange}
               style={{ height: "40px", padding: "0 10px", fontSize: "20px" }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {

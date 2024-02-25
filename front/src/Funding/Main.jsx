@@ -14,6 +14,11 @@ const Funding = () => {
   const [productDetail, setProductDetail] = useState();
   const [userDetail, setUserDetail] = useState();
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchFundingDetail(fundingId);

@@ -10,6 +10,11 @@ const FundingProgress = ({
   customProgressBarWidth = "w-[380px]",
 }) => {
   const now = (currentFundingAmount / targetFundingAmount) * 100;
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
+  };
+
   return (
     <div
       className={`${customWidth} ${customHeight} bg-[#f5f7fb] border-r-gray-300 flex flex-col justify-center items-center`}
@@ -18,7 +23,8 @@ const FundingProgress = ({
         className={`flex flex-row items-stretch justify-between ${customProgressBarWidth} mb-2`}
       >
         <div>
-          현재 {currentFundingAmount}원 / 총 {targetFundingAmount}원
+          현재 {formatPrice(currentFundingAmount)}원 / 총{" "}
+          {formatPrice(targetFundingAmount)}원
         </div>
         <div>🗓️{remainDays}일 남음</div>
       </div>
