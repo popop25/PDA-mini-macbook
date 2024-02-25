@@ -30,6 +30,7 @@ const Login = () => {
       const user = response.data;
       if (user.token) {
         setUserInfo(user);
+        console.log(user);
         sessionStorage.setItem(AUTH_KEY, JSON.stringify(user));
         navigate("/main");
       } else {
