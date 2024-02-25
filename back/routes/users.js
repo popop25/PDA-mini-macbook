@@ -88,4 +88,50 @@ router.get("/protected", authenticate, async (req, res, next) => {
   res.json({ data: "민감한 데이터" });
 });
 
-module.exports = router;
+
+// 전체 유저 조회 -> 개발이 끝나면 비활성화 할 것.
+router.get('/', async (req, res, next) => {
+  res.json(await User.find())
+})
+
+// 친구 추가
+router.post('/friends/:phoneNumber', authenticate, async (req, res, next) => {
+  try {
+    const phoneNumber = req.params.phoneNumber;
+    const friend = await User.findOne({phoneNumber: phoneNumber});
+    
+    if (!friend) {
+      return res.status(404).json({error: "Friend not found"});
+    }
+    
+    const user = await User.findById(req.user._id);
+    user.friendList.push(friend._id);
+    const newUser = await user.save();
+    res.json(newUser);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// 특정 유저의 친구 리스트 조회
+router.get('/friends', authenticate, async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id).populate({
+      path: 'friendList',
+      select: 'userEmail nickName phoneNumber birthDay isWishList'
+    });
+    
+    if (!user) {
+      return res.status(404).json({error: "User not found"});
+    }
+  
+    res.json(user.friendList);
+  } catch (error) {
+    next(error);
+  }
+});
+
+module.exports = {
+  router: router,
+  authenticate: authenticate
+};

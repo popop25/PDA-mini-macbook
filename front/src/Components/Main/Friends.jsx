@@ -1,9 +1,9 @@
 import React from "react";
 import User from "../Common/User";
+import AddFriend from "./AddFriend";
 
-export default function Friends() {
+export default function Friends({ friends }) {
   // id는 api 보낼 때 쓰기 위함
-
   const friendList = [
     {
       profileImg:
@@ -38,9 +38,10 @@ export default function Friends() {
     <div className="h-94vh max-w-66vw p-4 border border-gray-300 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
       <div className=" font-bold text-2xl ps-8 pb-8">
         친구
-        <span className="font-medium text-lg"> ({friendList.length})</span>
+        <span className="font-medium text-lg"> ({friends.length})</span>
+        <AddFriend />
       </div>
-      {friendList.map((friend) => {
+      {friends.map((friend) => {
         return <User friend={friend}></User>;
       })}
     </div>
