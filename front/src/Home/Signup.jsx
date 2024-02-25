@@ -139,6 +139,7 @@ const Signup = () => {
             <label
               htmlFor="phoneNumber"
               className="block text-sm font-medium leading-5 text-gray-700"
+              placeholder="010-0000-0000"
             >
               Phone Number
             </label>
