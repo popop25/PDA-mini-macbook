@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const {authenticate} = require("./users")
 const User = require("../models/User");
-const Product = require("../models/Product")
+const Product = require("../models/Product");
+const Funding = require("../models/Funding");
 
 // baseUrl : 127.0.0.1:3000/api/user/wish/
 
@@ -46,8 +47,17 @@ router.post('/', authenticate, async (req, res, next) => {
 
         user.isWishList.push(product._id);
         const updatedUser = await user.save();
-        
-        res.json(updatedUser.isWishList);
+
+        // funding 인스턴스 생성
+        const funding = await Funding.create({
+            user: userId,
+            product : product._id
+        })
+
+        res.json({
+            user: updatedUser.isWishList,
+            funding
+        });
     } catch (error) {
         next(error);
     }
@@ -76,6 +86,9 @@ router.delete('/', authenticate, async (req, res, next) => {
         
         const updatedUser = await user.save();
         
+        // funding 인스턴스 삭제
+        await Funding.findOneAndDelete({_id: product._id })
+
         res.json(updatedUser.isWishList);
     } catch (error) {
         next(error);
