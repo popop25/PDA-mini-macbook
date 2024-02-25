@@ -35,13 +35,12 @@ const Product = () => {
             }}
             className="max-w-sm"
             imgAlt="Meaningful alt text for an image that is not purely decorative"
-
             imgSrc={el.imageUrl}
           >
             <h5 className="text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-teal-400">
               {el.brandName}
             </h5>
-            <p className="text-sm font-bold tracking-tight text-transparent bg-clip-text text-yellow-500">
+            <p className="text-sm font-bold tracking-tight text-transparent text-yellow-500 bg-clip-text">
               {el.title}
             </p>
             <h2 className="font-normal text-gray-700 dark:text-gray-400">

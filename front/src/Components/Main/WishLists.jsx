@@ -14,7 +14,7 @@ export default function WishLists() {
       title: "고디바 다크 초콜릿 케이크",
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240102083150_cea5f5c4354544818ae6ef6f05577aa4.jpeg",
-      productId: 5547747,
+      productId: "65dabcd77ab394f8f65c348b",
       detailName: "고디바 다크 초콜릿 케이크",
       price: 39000,
       totalFunded: 36000,
@@ -27,7 +27,7 @@ export default function WishLists() {
         '"독일 명품 비타민" 오쏘몰 이뮨 멀티비타민&미네랄 7입 - Gift Box 증정 (공식수입)',
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240208175222_56f84a3432394905b35fbf329fa68bf1.png",
-      productId: 5547747,
+      productId: "65dabcd77ab394f8f65c348b",
       detailName:
         '"독일 명품 비타민" 오쏘몰 이뮨 멀티비타민&미네랄 7입 - Gift Box 증정 (공식수입)',
       price: 38000,
@@ -40,7 +40,7 @@ export default function WishLists() {
       title: "고디바 다크 초콜릿 케이크",
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240102083150_cea5f5c4354544818ae6ef6f05577aa4.jpeg",
-      productId: 5547747,
+      productId: "65dabcd77ab394f8f65c348b",
       detailName: "고디바 다크 초콜릿 케이크",
       price: 39000,
       totalFunded: 12000,
@@ -53,7 +53,7 @@ export default function WishLists() {
         '"독일 명품 비타민" 오쏘몰 이뮨 멀티비타민&미네랄 7입 - Gift Box 증정 (공식수입)',
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240208175222_56f84a3432394905b35fbf329fa68bf1.png",
-      productId: 5547747,
+      productId: "65dabcd77ab394f8f65c348b",
       detailName:
         '"독일 명품 비타민" 오쏘몰 이뮨 멀티비타민&미네랄 7입 - Gift Box 증정 (공식수입)',
       price: 38000,
@@ -66,7 +66,7 @@ export default function WishLists() {
       title: "고디바 다크 초콜릿 케이크",
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240102083150_cea5f5c4354544818ae6ef6f05577aa4.jpeg",
-      productId: 5547747,
+      productId: "65dabcd77ab394f8f65c348b",
       detailName: "고디바 다크 초콜릿 케이크",
       price: 39000,
       totalFunded: 2000,
@@ -79,7 +79,7 @@ export default function WishLists() {
         '"독일 명품 비타민" 오쏘몰 이뮨 멀티비타민&미네랄 7입 - Gift Box 증정 (공식수입)',
       imageUrl:
         "https://st.kakaocdn.net/product/gift/product/20240208175222_56f84a3432394905b35fbf329fa68bf1.png",
-      productId: 5547747,
+      productId: "65dabcd77ab394f8f65c348b",
       detailName:
         '"독일 명품 비타민" 오쏘몰 이뮨 멀티비타민&미네랄 7입 - Gift Box 증정 (공식수입)',
       price: 38000,
@@ -92,7 +92,7 @@ export default function WishLists() {
   function renderButton(fundingId) {
     return (
       <Button
-        className="text-myColor-green3 border-myColor-green3 hover:border-myColor-green2 hover:bg-white hover:text-myColor-green2 ms-auto mt-2"
+        className="mt-2 text-myColor-green3 border-myColor-green3 hover:border-myColor-green2 hover:bg-white hover:text-myColor-green2 ms-auto"
         onClick={() => {
           navigate(`/funding/${fundingId}`);
         }}
@@ -102,8 +102,8 @@ export default function WishLists() {
     );
   }
   return (
-    <div className="h-94vh max-w-66vw p-4 border border-gray-300 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
-      <div className="font-bold text-2xl ps-8 pb-8">친구 위시리스트</div>
+    <div className="p-4 overflow-y-auto border border-gray-300 h-94vh max-w-66vw scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+      <div className="pb-8 text-2xl font-bold ps-8">친구 위시리스트</div>
       <div className="px-8 min-w-96">
         {wishLists.map((wishList, index) => (
           <WishList
