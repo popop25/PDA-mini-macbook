@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WishList from "../Components/WishList";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap"
 import { fetchWishes } from "../Api/WishApi";
 
 export default function WishListPage() {
@@ -30,7 +30,7 @@ export default function WishListPage() {
       <h2 className="px-5 pt-5 pb-2 text-[20px] text">나의 위시리스트</h2>
 
       <div className="p-5">
-        <div className="grid gap-4 grid-cols-3">
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {/* {myWishList.map((myWish, index) => (
             <WishList key={index}
               imageUrl={myWish.imageUrl}
@@ -38,7 +38,12 @@ export default function WishListPage() {
               brandName={myWish.brandName}
               title={myWish.title}
               price={myWish.price}
-
+              useFundingProgress="true"
+              totalFunded={totalFunded}       // 이거
+              remainDays={remainDays}         // 생일 - 현재 날짜?
+              customWidth={customWidth}  
+              customHeight={customHeight}
+              customProgressBarWidth={customProgressBarWidth}
             />
           ))} */}
 
