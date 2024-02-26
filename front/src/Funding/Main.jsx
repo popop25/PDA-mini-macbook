@@ -10,6 +10,8 @@ import { useRecoilState } from "recoil";
 import Swal from "sweetalert2";
 import { Alert } from "flowbite-react";
 import { HiEye, HiInformationCircle } from "react-icons/hi";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 
 const Funding = () => {
   const { fundingId } = useParams();
@@ -18,6 +20,8 @@ const Funding = () => {
   const [productDetail, setProductDetail] = useState();
   const [userDetail, setUserDetail] = useState();
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const { width, height } = useWindowSize();
+  const [showConfetti, setShowConfetti] = useState(true);
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
@@ -52,6 +56,16 @@ const Funding = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // Set a timeout to hide the confetti after 3 seconds
+    const timeout = setTimeout(() => {
+      setShowConfetti(false);
+    }, 5000);
+
+    // Clean up the timeout when the component unmounts
+    return () => clearTimeout(timeout);
+  }, []);
+
   // const currentFundingAmount = fundingDetail.length === 0 ? 0 : 3;
   const currentFundingAmount = fundingDetail.reduce(
     (sum, item) => sum + item.amount,
@@ -76,6 +90,9 @@ const Funding = () => {
 
   return (
     <div className="flex flex-col items-center">
+      {currentFundingAmount === productDetail?.price && showConfetti && (
+        <Confetti width={width} height={height} />
+      )}
       <div className="w-[90vw] max-w-[700px] flex flex-col items-center">
         {currentFundingAmount === productDetail?.price ? (
           <Alert

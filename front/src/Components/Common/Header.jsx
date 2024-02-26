@@ -13,6 +13,7 @@ import { Avatar } from "flowbite-react";
 
 export default function Header() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const userNickName = JSON.parse(sessionStorage.getItem(AUTH_KEY)).nickName;
   const navigate = useNavigate();
   const handleLogout = () => {
     console.log("logout");
@@ -31,7 +32,7 @@ export default function Header() {
         <div className="flex items-center justify-center md:order-2">
           <span className="flex items-center mr-5 text-lg">
             <Avatar rounded size="sm" className="mr-2" />
-            {userInfo.nickName}
+            {userNickName}
           </span>
           <Button onClick={handleLogout}>로그아웃</Button>
           <Navbar.Toggle />
