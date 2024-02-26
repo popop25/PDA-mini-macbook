@@ -77,7 +77,6 @@ const Funding = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="w-[90vw] max-w-[700px] flex flex-col items-center">
-        {userDetail?.birthDay}
         {currentFundingAmount === productDetail?.price ? (
           <Alert
             icon={HiInformationCircle}
