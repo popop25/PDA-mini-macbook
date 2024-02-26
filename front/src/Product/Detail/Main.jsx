@@ -21,22 +21,35 @@ const ProductDetail = () => {
   };
 
   const onWishClick = async () => {
-    isHeart
-      ? Swal.fire({
-          icon: "warning",
-          title: "위시리스트 삭제",
-          text: "펀딩이 취소되고 지금까지 모인 펀딩이 환불처리 됩니다.",
-        }).then(() => window.location.reload())
-      : alert("위시리스트에 추가되었습니다.");
-
     if (!isHeart) {
       const response = await fetchWishPost(productDetail[0]?.productId);
+      Swal.fire({
+        icon: "success",
+        title: "위시리스트 추가",
+        text: "펀딩이 시작됩니다!",
+      }).then(setIsHeart((prev) => !prev));
       console.log(response);
     } else if (isHeart) {
       const response = await fetchWishDelete(productDetail[0]?.productId);
+      Swal.fire({
+        icon: "warning",
+        title: "위시리스트 삭제",
+        text: "펀딩이 취소되고 지금까지 모인 모두 펀딩이 환불처리 됩니다.",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "승인",
+        cancelButtonText: "취소",
+        everseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("펀딩 취소가 완료되었습니다!");
+
+          setIsHeart((prev) => !prev);
+        }
+      });
       console.log(response);
     }
-    setIsHeart((prev) => !prev);
   };
 
   useEffect(() => {
@@ -80,7 +93,7 @@ const ProductDetail = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full mt-4 bg-gradient-to-r from-yellow-100 to-green-100">
-      <div className="flex flex-row items-start justify-center w-full max-w-4xl gap-4 p-4 m-20 bg-white border-2 border-gray-200 rounded-lg shadow-lg">
+      <div className="flex flex-row items-start justify-center w-full max-w-4xl gap-4 p-4 m-20 bg-white border-2 border-gray-200 rounded-lg shadow-lg bg-gradient-to-r from-yellow-100 to-green-100">
         <Card
           className="w-[398px] h-[398px]"
           imgAlt="Product image"
