@@ -7,9 +7,11 @@ import { fetchFundingDetail } from "../Api/Funding"
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../stores/auth";
 
+const userInfo = sessionStorage.getItem('AUTH_USER')
+console.log("여깅겨이ㅕ기여기이", userInfo)
 
 export default function WishListPage() {
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);  // recoil
+  // const [userInfo, setUserInfo] = useRecoilState(userInfoState);  // recoil
   const [myWishList, setMyWishList] = useState([]);
   const [fundingData, setFundingData] = useState([]);
   // console.log("여기",userInfo)
@@ -27,12 +29,13 @@ export default function WishListPage() {
     birthDayDate.setFullYear(today.getFullYear());
   }
 
-// 오늘로부터의 차이 계산
-const remainingDays = Math.ceil((birthDayDate - today) / (1000 * 60 * 60 * 24));
+  // 오늘로부터의 차이 계산
+  const remainingDays = Math.ceil((birthDayDate - today) / (1000 * 60 * 60 * 24));
   
   useEffect(() => {
       async function fetchData() {
-          const data1 = await fetchWishes(userInfo.phoneNumber)    // user phoneNumber 전달
+          const data1 = await fetchWishes(JSON.parse(userInfo).phoneNumber)    // user phoneNumber 전달
+          console.log("2222222", data1)
           setMyWishList(data1.isWishList)
           // console.log("위시리스트", data1.isWishList)
       }
