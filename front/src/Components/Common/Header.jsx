@@ -21,7 +21,7 @@ export default function Header() {
   };
   return (
     <div>
-      <Navbar fluid rounded>
+      <Navbar fluid rounded className="mb-4 shadow-sm">
         <Navbar.Brand>
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
             티끌
