@@ -5,7 +5,6 @@ import { useNavigate } from "react-router";
 
 export default function WishList({
   _id,
-  productId,
   imageUrl,
   brandImageUrl,
   brandName,
@@ -60,7 +59,7 @@ export default function WishList({
             <img
               src={imageUrl}
               className="w-full h-auto mb-3"
-              style={{ width: imgWidth ? imgWidth : "" }}
+              style={{ width: imgWidth ? imgWidth : "", minWidth: "130px" }}
               alt="product"
             />
           )}
@@ -72,16 +71,16 @@ export default function WishList({
                 className="w-8 h-8 mr-2"
               />
             )}
-            <h6 className="text-sm font-medium text-center text-gray-700 dark:text-gray-400">
+            <h6 className="text-sm font-extrabold text-center text-green-300 dark:text-gray-400">
               {brandName}
             </h6>
           </div>
         </div>
-        <div style={{ textAlign: "left" }}>
+        <div style={{ textAlign: "left", overflow: "auto" }} className="w-full md:w-auto lg:w-auto">
           <h5
             className={`${
               useButton ? "w-[400px]" : "w-[300px]"
-            } text-xl font-bold tracking-tight text-gray-900 dark:text-white`}
+            } text-xl font-bold tracking-tight text-yellow-500 dark:text-white`}
             style={{ marginBottom: "5px", fontSize: "1rem" }}
           >
             {title}
