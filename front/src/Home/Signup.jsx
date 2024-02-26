@@ -67,7 +67,7 @@ const Signup = () => {
         nickName: state.nickName,
       });
       console.log(response.data);
-      if (response.data.result === false) {
+      if (response.data.result === true) {
         alert("중복된 닉네임 입니다.");
       } else {
         alert("사용가능한 닉네임 입니다.");
