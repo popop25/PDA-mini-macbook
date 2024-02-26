@@ -58,9 +58,26 @@ const Funding = () => {
     0
   );
 
+  const calculateDDay = (targetDate) => {
+    // Get the current date
+    const currentDate = new Date();
+
+    // Parse the target date string to a Date object (Note: Not required in this case)
+    const parsedTargetDate = new Date(targetDate);
+
+    // Calculate the time difference in milliseconds
+    const timeDifference = parsedTargetDate - currentDate;
+
+    // Calculate the number of days
+    const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+    return daysDifference < 0 ? daysDifference + 365 : daysDifference;
+  };
+
   return (
     <div className="flex flex-col items-center">
       <div className="w-[90vw] max-w-[700px] flex flex-col items-center">
+        {userDetail?.birthDay}
         {currentFundingAmount === productDetail?.price ? (
           <Alert
             icon={HiInformationCircle}
@@ -91,6 +108,7 @@ const Funding = () => {
             customHeight="h-[84px]"
             targetFundingAmount={productDetail?.price}
             currentFundingAmount={currentFundingAmount}
+            remainDays={calculateDDay(userDetail?.birthDay)}
           />
         </div>
         {/* <button className="w-[80%] bg-myColor-green3 text-white mt-4 h-[50px] rounded-lg">
