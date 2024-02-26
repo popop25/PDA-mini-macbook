@@ -19,10 +19,15 @@ export default function WishList({
   useFundingProgress, // 펀딩 프로세스를 쓸것인가 - 메인화면용
   useButton, // 버튼을 사용할 것인가 - 메인화면용
   imgWidth, // 이미지 크기
+  fundingId,
 }) {
   const navigate = useNavigate();
   function handleCardClick() {
-    navigate(`/product/${_id}`);
+    if (useButton) {
+      navigate(`/product/${_id}`);
+    } else {
+      navigate(`/funding/${fundingId}`);
+    }
   }
 
   function handleButtonClick(e) {
@@ -54,7 +59,7 @@ export default function WishList({
             <img
               src={imageUrl}
               className="w-full h-auto mb-3"
-              style={{ width: imgWidth ? imgWidth : "" }}
+              style={{ width: imgWidth ? imgWidth : "", minWidth: "130px" }}
               alt="product"
             />
           )}
@@ -66,16 +71,19 @@ export default function WishList({
                 className="w-8 h-8 mr-2"
               />
             )}
-            <h6 className="text-sm font-medium text-center text-gray-700 dark:text-gray-400">
+            <h6 className="text-sm font-extrabold text-center text-green-300 dark:text-gray-400">
               {brandName}
             </h6>
           </div>
         </div>
-        <div style={{ textAlign: "left" }}>
+        <div
+          style={{ textAlign: "left", overflow: "auto" }}
+          className="w-full md:w-auto lg:w-auto"
+        >
           <h5
             className={`${
               useButton ? "w-[400px]" : "w-[300px]"
-            } text-xl font-bold tracking-tight text-gray-900 dark:text-white`}
+            } text-xl font-bold tracking-tight text-yellow-500 dark:text-white`}
             style={{ marginBottom: "5px", fontSize: "1rem" }}
           >
             {title}
@@ -84,7 +92,7 @@ export default function WishList({
             className="px-1 py-2 font-bold text-gray-700 dark:text-gray-400"
             style={{ fontSize: "0.875rem" }}
           >
-            {price} 원
+            {parseInt(price).toLocaleString()} 원
           </p>
           {useFundingProgress && (
             <FundingProgress

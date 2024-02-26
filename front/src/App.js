@@ -34,7 +34,9 @@ function App() {
   return (
     <RecoilRoot>
       <BrowserRouter>
-        <Routes> {renderRoutes(mainRoutes)}</Routes>
+        <Routes>
+          <div>{renderRoutes(mainRoutes)}</div>
+        </Routes>
       </BrowserRouter>
     </RecoilRoot>
   );

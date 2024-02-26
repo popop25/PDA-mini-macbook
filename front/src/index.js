@@ -9,8 +9,10 @@ import { RecoilRoot } from "recoil";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-  <RecoilRoot>
-    <RouterProvider router={router}></RouterProvider>
-  </RecoilRoot>
+  <div className="bg-gradient-to-r from-yellow-100 to-green-100">
+    <RecoilRoot>
+      <RouterProvider router={router}></RouterProvider>
+    </RecoilRoot>
+  </div>
   // </React.StrictMode>
 );

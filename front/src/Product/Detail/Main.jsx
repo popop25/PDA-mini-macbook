@@ -56,6 +56,11 @@ const ProductDetail = () => {
     const fetchData = async () => {
       const response = await fetchProductDetail(productId);
       console.log("product response:", response);
+      if (response[0].isHeart) {
+        setIsHeart(true);
+      } else {
+        setIsHeart(false);
+      }
       setProductDetail(response);
     };
     fetchData();
@@ -93,7 +98,7 @@ const ProductDetail = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full mt-4 bg-gradient-to-r from-yellow-100 to-green-100">
-      <div className="flex flex-row items-start justify-center w-full max-w-4xl gap-4 p-4 m-20 bg-white border-2 border-gray-200 rounded-lg shadow-lg">
+      <div className="flex flex-row items-start justify-center w-full max-w-4xl gap-4 p-4 m-20 bg-white border-2 border-gray-200 rounded-lg shadow-lg ">
         <Card
           className="w-[398px] h-[398px]"
           imgAlt="Product image"
@@ -101,7 +106,7 @@ const ProductDetail = () => {
         />
         <div className="flex flex-col justify-start max-w-sm">
           <Card className="w-[398px] h-[398px]">
-            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="text-2xl  font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-400 ">
               {productDetail[0]?.detailName}
             </h5>
             <div className="mb-3 mt-2.5 flex items-center">
@@ -115,7 +120,7 @@ const ProductDetail = () => {
                 {productDetail[0]?.brandName}
               </span>
             </div>
-            <span className="text-3xl font-bold text-gray-900 dark:text-white">
+            <span className="text-3xl font-bold tracking-tight text-transparent text-yellow-500 bg-clip-text">
               {formatPrice(productDetail[0]?.price)}
             </span>
             <Button
