@@ -20,10 +20,15 @@ export default function WishList({
   useFundingProgress, // 펀딩 프로세스를 쓸것인가 - 메인화면용
   useButton, // 버튼을 사용할 것인가 - 메인화면용
   imgWidth, // 이미지 크기
+  fundingId,
 }) {
   const navigate = useNavigate();
   function handleCardClick() {
-    navigate(`/product/${_id}`);
+    if (useButton) {
+      navigate(`/product/${_id}`);
+    } else {
+      navigate(`/funding/${fundingId}`);
+    }
   }
 
   function handleButtonClick(e) {
