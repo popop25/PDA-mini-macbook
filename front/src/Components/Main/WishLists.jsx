@@ -4,7 +4,6 @@ import WishList from "../WishList";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 export default function WishLists({ wishList, fundings }) {
-  console.log(wishList, fundings);
   const navigate = useNavigate();
 
   // 각 wishList 항목과 연결된 funding 객체의 id를 찾아주는 함수

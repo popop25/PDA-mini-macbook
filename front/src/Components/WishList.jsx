@@ -4,6 +4,7 @@ import FundingProgress from "./Funding/FundingProgress";
 import { useNavigate } from "react-router";
 
 export default function WishList({
+  _id,
   productId,
   imageUrl,
   brandImageUrl,
@@ -22,8 +23,7 @@ export default function WishList({
 }) {
   const navigate = useNavigate();
   function handleCardClick() {
-    // console.log(e.value.target);
-    navigate(`/product/${productId}`);
+    navigate(`/product/${_id}`);
   }
 
   function handleButtonClick(e) {
