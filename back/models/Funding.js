@@ -29,5 +29,10 @@ const fundingSchema = new mongoose.Schema(
   }
 );
 
+fundingSchema.pre("find", function (next) {
+  this.populate("transaction.userId");
+  next();
+});
+
 const Funding = mongoose.model("Funding", fundingSchema);
 module.exports = Funding;

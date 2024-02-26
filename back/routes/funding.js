@@ -55,4 +55,17 @@ router.post("/:fundingId", async (req, res, next) => {
   res.send(updateResult);
 });
 
+// transaction 삭제 - test용
+router.patch("/:fundingId", async (req, res, next) => {
+  const result = await Funding.updateOne(
+    {
+      _id: req.params.fundingId,
+    },
+    {
+      transaction: [],
+    }
+  );
+  res.send(result);
+});
+
 module.exports = router;
