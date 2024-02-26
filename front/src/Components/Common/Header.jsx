@@ -9,9 +9,11 @@ import { Button, Navbar } from "flowbite-react";
 import { userInfoState } from "../../stores/auth";
 import { useRecoilState } from "recoil";
 import { AUTH_KEY } from "../../Home/Login";
+import { Avatar } from "flowbite-react";
 
 export default function Header() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const userNickName = JSON.parse(sessionStorage.getItem(AUTH_KEY)).nickName;
   const navigate = useNavigate();
   const handleLogout = () => {
     console.log("logout");
@@ -27,15 +29,20 @@ export default function Header() {
             티끌
           </span>
         </Navbar.Brand>
-        <div className="flex md:order-2">
+        <div className="flex items-center justify-center md:order-2">
+          <span className="flex items-center mr-5 text-lg">
+            <Avatar rounded size="sm" className="mr-2" />
+            {userNickName}
+          </span>
           <Button onClick={handleLogout}>로그아웃</Button>
           <Navbar.Toggle />
         </div>
-        <Navbar.Collapse>
+        <Navbar.Collapse className="flex flex-row items-center justify-center mt-[-24px] ">
           {/* <Navbar.Link href="#" active>
             Home
           </Navbar.Link> */}
           <Navbar.Link
+            className=" hover:cursor-pointer text-[16px]"
             onClick={() => {
               navigate("/main");
             }}
@@ -43,6 +50,7 @@ export default function Header() {
             홈
           </Navbar.Link>
           <Navbar.Link
+            className=" hover:cursor-pointer text-[16px]"
             onClick={() => {
               navigate("/product");
             }}
@@ -50,6 +58,7 @@ export default function Header() {
             상품
           </Navbar.Link>
           <Navbar.Link
+            className="hover:cursor-pointer text-[16px]"
             onClick={() => {
               navigate("/wish");
             }}

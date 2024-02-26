@@ -8,6 +8,10 @@ import { fetchFundingDetail, fetchFundingPost } from "../Api/Funding";
 import { userInfoState } from "../stores/auth";
 import { useRecoilState } from "recoil";
 import Swal from "sweetalert2";
+import { Alert } from "flowbite-react";
+import { HiEye, HiInformationCircle } from "react-icons/hi";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 
 const Funding = () => {
   const { fundingId } = useParams();
@@ -16,6 +20,8 @@ const Funding = () => {
   const [productDetail, setProductDetail] = useState();
   const [userDetail, setUserDetail] = useState();
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const { width, height } = useWindowSize();
+  const [showConfetti, setShowConfetti] = useState(true);
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
@@ -50,15 +56,59 @@ const Funding = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // Set a timeout to hide the confetti after 3 seconds
+    const timeout = setTimeout(() => {
+      setShowConfetti(false);
+    }, 5000);
+
+    // Clean up the timeout when the component unmounts
+    return () => clearTimeout(timeout);
+  }, []);
+
   // const currentFundingAmount = fundingDetail.length === 0 ? 0 : 3;
   const currentFundingAmount = fundingDetail.reduce(
     (sum, item) => sum + item.amount,
     0
   );
 
+  const calculateDDay = (targetDate) => {
+    // Get the current date
+    const currentDate = new Date();
+
+    // Parse the target date string to a Date object (Note: Not required in this case)
+    const parsedTargetDate = new Date(targetDate);
+
+    // Calculate the time difference in milliseconds
+    const timeDifference = parsedTargetDate - currentDate;
+
+    // Calculate the number of days
+    const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+    return daysDifference < 0 ? daysDifference + 365 : daysDifference;
+  };
+
   return (
     <div className="flex flex-col items-center">
+      {currentFundingAmount === productDetail?.price && showConfetti && (
+        <Confetti width={width} height={height} />
+      )}
       <div className="w-[90vw] max-w-[700px] flex flex-col items-center">
+        {currentFundingAmount === productDetail?.price ? (
+          <Alert
+            icon={HiInformationCircle}
+            color="success"
+            className="w-[100%]"
+            // onDismiss={() => alert("Alert dismissed!")}
+            withBorderAccent
+          >
+            <span className="font-bold text-[16px]">
+              펀딩이 완료된 상품입니다!
+            </span>
+          </Alert>
+        ) : (
+          <div></div>
+        )}
         <div className="text-[40px] mt-2 mb-3 font-semibold text-center">
           <div>
             <a className="font-extrabold ">{userDetail?.nickName}</a>님의
@@ -74,6 +124,7 @@ const Funding = () => {
             customHeight="h-[84px]"
             targetFundingAmount={productDetail?.price}
             currentFundingAmount={currentFundingAmount}
+            remainDays={calculateDDay(userDetail?.birthDay)}
           />
         </div>
         {/* <button className="w-[80%] bg-myColor-green3 text-white mt-4 h-[50px] rounded-lg">
