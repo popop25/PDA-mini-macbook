@@ -94,7 +94,7 @@ const ProductDetail = () => {
             </span>
             <Button
               onClick={onWishClick}
-              className="mt-4 text-white transition duration-150 ease-in-out bg-yellow-300 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+              className="mt-4 text-white transition duration-150 ease-in-out bg-yellow-300 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none"
             >
               위시리스트 담기
               <img
