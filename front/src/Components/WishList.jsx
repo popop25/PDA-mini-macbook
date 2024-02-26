@@ -77,11 +77,11 @@ export default function WishList({
             className={`${
               useButton ? "w-[400px]" : "w-[300px]"
             } text-xl font-bold tracking-tight text-gray-900 dark:text-white`}
-            style={{ marginBottom: "5px" }}
+            style={{ marginBottom: "5px", fontSize: "1rem" }}
           >
             {title}
           </h5>
-          <p className="px-1 py-2 font-bold text-gray-700 dark:text-gray-400">
+          <p className="px-1 py-2 font-bold text-gray-700 dark:text-gray-400" style={{ fontSize: "0.875rem" }}>
             {price} 원
           </p>
           {useFundingProgress && (
