@@ -56,6 +56,11 @@ const ProductDetail = () => {
     const fetchData = async () => {
       const response = await fetchProductDetail(productId);
       console.log("product response:", response);
+      if (response[0].isHeart) {
+        setIsHeart(true);
+      } else {
+        setIsHeart(false);
+      }
       setProductDetail(response);
     };
     fetchData();
