@@ -101,7 +101,7 @@ const ProductDetail = () => {
         />
         <div className="flex flex-col justify-start max-w-sm">
           <Card className="w-[398px] h-[398px]">
-            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="text-2xl  font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-400 ">
               {productDetail[0]?.detailName}
             </h5>
             <div className="mb-3 mt-2.5 flex items-center">
@@ -115,7 +115,7 @@ const ProductDetail = () => {
                 {productDetail[0]?.brandName}
               </span>
             </div>
-            <span className="text-3xl font-bold text-gray-900 dark:text-white">
+            <span className="text-3xl font-bold tracking-tight text-transparent text-yellow-500 bg-clip-text">
               {formatPrice(productDetail[0]?.price)}
             </span>
             <Button
