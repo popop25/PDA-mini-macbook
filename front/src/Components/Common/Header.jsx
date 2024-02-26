@@ -9,6 +9,7 @@ import { Button, Navbar } from "flowbite-react";
 import { userInfoState } from "../../stores/auth";
 import { useRecoilState } from "recoil";
 import { AUTH_KEY } from "../../Home/Login";
+import { Avatar } from "flowbite-react";
 
 export default function Header() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -27,7 +28,11 @@ export default function Header() {
             티끌
           </span>
         </Navbar.Brand>
-        <div className="flex md:order-2">
+        <div className="flex items-center justify-center md:order-2">
+          <span className="flex items-center mr-5 text-lg">
+            <Avatar rounded size="sm" className="mr-2" />
+            {userInfo.nickName}
+          </span>
           <Button onClick={handleLogout}>로그아웃</Button>
           <Navbar.Toggle />
         </div>
