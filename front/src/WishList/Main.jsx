@@ -5,13 +5,12 @@ import { fetchWishes } from "../Api/WishApi";
 import { fetchFundingDetail } from "../Api/Funding";
 
 const userInfo = sessionStorage.getItem("AUTH_USER");
-// console.log("여깅겨이ㅕ기여기이", userInfo);
+// console.log("유저정보", userInfo);
 // console.log(typeof(userInfo))
 
 export default function WishListPage() {
   const [myWishList, setMyWishList] = useState([]);
   const [fundingData, setFundingData] = useState([]);
-  // console.log("여기",userInfo)
 
   const customWidth = "w-[300px]";
   const customHeight = "h-[80px]";
@@ -66,14 +65,12 @@ export default function WishListPage() {
             <WishList
               key={index}
               _id={myWish._id}
-              // fundingId={myWish.}    //TODO: 펀딩Id
               imageUrl={myWish.imageUrl}
               brandImageUrl={myWish.brandImageUrl}
               brandName={myWish.brandName}
               title={myWish.title}
               price={myWish.price}
               useFundingProgress="true"
-              // totalFunded={totalFunded}       // TODO: 이거
               remainDays={remainingDays}
               customWidth={customWidth}
               customHeight={customHeight}
