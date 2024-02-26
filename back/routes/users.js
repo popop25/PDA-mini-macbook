@@ -88,22 +88,21 @@ router.get("/protected", authenticate, async (req, res, next) => {
   res.json({ data: "민감한 데이터" });
 });
 
-
 // 전체 유저 조회 -> 개발이 끝나면 비활성화 할 것.
-router.get('/', async (req, res, next) => {
-  res.json(await User.find())
-})
+router.get("/", async (req, res, next) => {
+  res.json(await User.find());
+});
 
 // 친구 추가
-router.post('/friends/:phoneNumber', authenticate, async (req, res, next) => {
+router.post("/friends/:phoneNumber", authenticate, async (req, res, next) => {
   try {
     const phoneNumber = req.params.phoneNumber;
-    const friend = await User.findOne({phoneNumber: phoneNumber});
-    
+    const friend = await User.findOne({ phoneNumber: phoneNumber });
+
     if (!friend) {
-      return res.status(404).json({error: "Friend not found"});
+      return res.status(404).json({ error: "Friend not found" });
     }
-    
+
     const user = await User.findById(req.user._id);
     user.friendList.push(friend._id);
     const newUser = await user.save();
@@ -114,18 +113,42 @@ router.post('/friends/:phoneNumber', authenticate, async (req, res, next) => {
 });
 
 // 특정 유저의 친구 리스트 조회
-router.get('/friends', authenticate, async (req, res, next) => {
+router.get("/friends", authenticate, async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).populate({
-      path: 'friendList',
-      select: 'userEmail nickName phoneNumber birthDay isWishList'
+      path: "friendList",
+      select: "userEmail nickName phoneNumber birthDay isWishList",
     });
-    
+
     if (!user) {
-      return res.status(404).json({error: "User not found"});
+      return res.status(404).json({ error: "User not found" });
     }
-  
+
     res.json(user.friendList);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/nickName", async (req, res, next) => {
+  try {
+    const users = await User.find();
+    const inputNickName = req.body;
+    let idDuplicate = false;
+    for (user of users) {
+      console.log(user.nickName);
+      console.log(inputNickName.nickName);
+      if (user.nickName === inputNickName.nickName) {
+        idDuplicate = true;
+        break;
+      }
+    }
+
+    if (idDuplicate) {
+      res.json({ result: true });
+    } else {
+      res.json({ result: false });
+    }
   } catch (error) {
     next(error);
   }
@@ -133,5 +156,5 @@ router.get('/friends', authenticate, async (req, res, next) => {
 
 module.exports = {
   router: router,
-  authenticate: authenticate
+  authenticate: authenticate,
 };
