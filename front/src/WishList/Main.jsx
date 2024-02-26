@@ -55,7 +55,7 @@ export default function WishListPage() {
       <h2 className="px-5 pt-5 pb-2 text-[20px] text">나의 위시리스트</h2>
 
       <div className="p-5">
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 grid-cols-1 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1">
           {myWishList.map((myWish, index) => (
             <WishList
               key={index}
