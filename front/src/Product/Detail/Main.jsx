@@ -5,6 +5,7 @@ import heart from "../../imgs/heart.svg";
 import heart_full from "../../imgs/heart_full.svg";
 import { fetchProductDetail } from "../../Api/ProductDetailApi";
 import sanitizeHtml from "sanitize-html";
+import { fetchWishPost, fetchWishDelete } from "../../Api/WishApi";
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -18,18 +19,26 @@ const ProductDetail = () => {
     }).format(price);
   };
 
-  const onWishClick = () => {
+  const onWishClick = async () => {
     alert(
       isHeart
         ? "위시리스트에서 삭제되었습니다."
         : "위시리스트에 추가되었습니다."
     );
-    setIsHeart(!isHeart);
+    if (!isHeart) {
+      const response = await fetchWishPost(productDetail[0]?.productId);
+      console.log(response);
+    } else if (isHeart) {
+      const response = await fetchWishDelete(productDetail[0]?.productId);
+      console.log(response);
+    }
+    setIsHeart((prev) => !prev);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchProductDetail(productId);
+      console.log("product response:", response);
       setProductDetail(response);
     };
     fetchData();
@@ -66,14 +75,14 @@ const ProductDetail = () => {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center mt-4 w-full bg-gradient-to-r from-yellow-100 to-green-100">
-      <div className="flex flex-row justify-center items-start m-20 gap-4 w-full max-w-4xl border-2 bg-white border-gray-200 rounded-lg p-4 shadow-lg">
+    <div className="flex flex-col items-center justify-center w-full mt-4 bg-gradient-to-r from-yellow-100 to-green-100">
+      <div className="flex flex-row items-start justify-center w-full max-w-4xl gap-4 p-4 m-20 bg-white border-2 border-gray-200 rounded-lg shadow-lg">
         <Card
           className="w-[398px] h-[398px]"
           imgAlt="Product image"
           imgSrc={productDetail[0]?.detailImageUrl}
         />
-        <div className="max-w-sm flex flex-col justify-start">
+        <div className="flex flex-col justify-start max-w-sm">
           <Card className="w-[398px] h-[398px]">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {productDetail[0]?.detailName}
