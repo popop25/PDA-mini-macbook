@@ -5,7 +5,8 @@ import { fetchWishes } from "../Api/WishApi";
 import { fetchFundingDetail } from "../Api/Funding";
 
 const userInfo = sessionStorage.getItem("AUTH_USER");
-console.log("여깅겨이ㅕ기여기이", userInfo);
+// console.log("여깅겨이ㅕ기여기이", userInfo);
+// console.log(typeof(userInfo))
 
 export default function WishListPage() {
   const [myWishList, setMyWishList] = useState([]);
@@ -15,7 +16,8 @@ export default function WishListPage() {
   const customWidth = "w-[300px]";
   const customHeight = "h-[80px]";
   const customProgressBarWidth = "w-[280px]";
-  const birthDayDate = new Date(userInfo.birthDay);
+  const birthDayDate = new Date(JSON.parse(userInfo).birthDay);
+  // console.log("생일", birthDayDate)
 
   // 오늘 날짜
   const today = new Date();
@@ -44,10 +46,6 @@ export default function WishListPage() {
   useEffect(() => {
     async function fetchData() {
       const data1 = await fetchWishes(JSON.parse(userInfo).phoneNumber); // user phoneNumber 전달
-      console.log(
-        "JSON.parse(userInfo).phoneNumber:",
-        JSON.parse(userInfo).phoneNumber
-      );
       console.log("2222222", data1);
       setMyWishList(data1.isWishList);
       setFundingData(data1.fundings);
@@ -80,7 +78,7 @@ export default function WishListPage() {
               customWidth={customWidth}
               customHeight={customHeight}
               customProgressBarWidth={customProgressBarWidth}
-              fundingId={fundingData[index]._id}
+              fundingId={fundingData[index]?._id}
             />
           ))}
         </div>
