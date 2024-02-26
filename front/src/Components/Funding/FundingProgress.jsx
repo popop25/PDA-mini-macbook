@@ -23,8 +23,8 @@ const FundingProgress = ({
         className={`flex flex-row items-stretch justify-between ${customProgressBarWidth} mb-2`}
       >
         <div>
-          현재 {formatPrice(currentFundingAmount)}원 / 총{" "}
-          {formatPrice(targetFundingAmount)}원
+          현재 ₩{formatPrice(currentFundingAmount)} / 총 ₩
+          {formatPrice(targetFundingAmount)}
         </div>
         <div>🗓️{remainDays}일 남음</div>
       </div>

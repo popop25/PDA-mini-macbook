@@ -11,6 +11,7 @@ import { useRecoilState } from "recoil";
 const Funding = () => {
   const { fundingId } = useParams();
   const [fundingDetail, setFundingDetail] = useState([]);
+  const [userFundingResult, setUserFundingResult] = useState();
   const [productDetail, setProductDetail] = useState();
   const [userDetail, setUserDetail] = useState();
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -26,14 +27,34 @@ const Funding = () => {
       setFundingDetail(response[0].transaction);
       setProductDetail(response[0].product);
       setUserDetail(response[0].user);
+
+      const userAmountResult = response[0].transaction.reduce((acc, item) => {
+        const {
+          amount,
+          userId: { nickName },
+        } = item;
+        acc[nickName] = (acc[nickName] || 0) + amount;
+        return acc;
+      }, {});
+      console.log(userAmountResult);
+      const resultArray = Object.entries(userAmountResult).map(
+        ([user, amount]) => ({
+          user,
+          amount,
+        })
+      );
+      console.log(resultArray);
+      setUserFundingResult(resultArray);
     };
     fetchData();
   }, []);
+
   // const currentFundingAmount = fundingDetail.length === 0 ? 0 : 3;
   const currentFundingAmount = fundingDetail.reduce(
     (sum, item) => sum + item.amount,
     0
   );
+
   return (
     <div className="flex flex-col items-center">
       <div className="w-[90vw] max-w-[700px] flex flex-col items-center">
@@ -66,10 +87,10 @@ const Funding = () => {
           />
         </div>
         <div className="flex flex-row flex-wrap w-[100%] justify-center mt-4">
-          {[1, 2, 3, 4, 5].map((value) => {
+          {userFundingResult?.map((value) => {
             return (
-              <div key={value} className="w-[30%] h-[200px] m-1 ">
-                <FundingProfile />
+              <div key={value.user} className="w-[30%] h-[200px] m-1 ">
+                <FundingProfile amount={value.amount} userInfo={value.user} />
               </div>
             );
           })}

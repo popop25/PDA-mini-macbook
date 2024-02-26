@@ -13,6 +13,8 @@ export default function ModalComp({ fundingId, productDetail, userDetail }) {
   const [isFundingPossible, setIsFundingPossible] = useState(true);
   const [openAmountAlert, setOpenAmountAlert] = useState(false);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const userId = sessionStorage.getItem("AUTH_USER");
+  console.log("funding user Id:", JSON.parse(userId)._id);
 
   const formatAmount = (input) => {
     // Remove existing commas and format the number
@@ -41,17 +43,19 @@ export default function ModalComp({ fundingId, productDetail, userDetail }) {
 
   const handleFundClick = async () => {
     // console.log(userInfo._id, ":", amount, ":", fundingId);
-    const userId = sessionStorage.getItem("AUTH_USER");
     const numericAmount = parseFloat(amount.replace(/,/g, ""));
-    console.log(userId);
     console.log(numericAmount);
     // 입력된 후원 금액이 숫자인지 확인
-    if (!isNaN(numericAmount) && parseFloat(numericAmount) >= 0) {
+    if (
+      !isNaN(numericAmount) &&
+      parseFloat(numericAmount) >= 0 &&
+      JSON.parse(userId)._id.length > 2
+    ) {
       // 펀딩 api 요청을 보낸다
 
       // 1. 펀딩이 가능한 경우
       const response = await fetchFundingPost(fundingId, {
-        userId: userId._id,
+        userId: JSON.parse(userId)._id,
         amount: numericAmount,
       });
       console.log("fetchFundingPost:", response);

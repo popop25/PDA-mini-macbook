@@ -8,9 +8,9 @@ import { RecoilRoot } from "recoil";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <RouterProvider router={router}></RouterProvider>
-    </RecoilRoot>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <RecoilRoot>
+    <RouterProvider router={router}></RouterProvider>
+  </RecoilRoot>
+  // </React.StrictMode>
 );
