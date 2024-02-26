@@ -6,6 +6,7 @@ import heart_full from "../../imgs/heart_full.svg";
 import { fetchProductDetail } from "../../Api/ProductDetailApi";
 import sanitizeHtml from "sanitize-html";
 import { fetchWishPost, fetchWishDelete } from "../../Api/WishApi";
+import Swal from "sweetalert2";
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -20,11 +21,14 @@ const ProductDetail = () => {
   };
 
   const onWishClick = async () => {
-    alert(
-      isHeart
-        ? "위시리스트에서 삭제되었습니다."
-        : "위시리스트에 추가되었습니다."
-    );
+    isHeart
+      ? Swal.fire({
+          icon: "warning",
+          title: "위시리스트 삭제",
+          text: "펀딩이 취소되고 지금까지 모인 펀딩이 환불처리 됩니다.",
+        }).then(() => window.location.reload())
+      : alert("위시리스트에 추가되었습니다.");
+
     if (!isHeart) {
       const response = await fetchWishPost(productDetail[0]?.productId);
       console.log(response);
