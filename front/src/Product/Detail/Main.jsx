@@ -67,14 +67,14 @@ const ProductDetail = () => {
 
   return (
     <div className="flex flex-col items-center justify-center mt-4 w-full bg-gradient-to-r from-yellow-100 to-green-100">
-      <div className="flex flex-row justify-center items-start mb-20 gap-4 w-full max-w-4xl">
+      <div className="flex flex-row justify-center items-start m-20 gap-4 w-full max-w-4xl border-2 bg-white border-gray-200 rounded-lg p-4 shadow-lg">
         <Card
-          className="w-[400px] h-[350px]"
+          className="w-[398px] h-[398px]"
           imgAlt="Product image"
           imgSrc={productDetail[0]?.detailImageUrl}
         />
-        <div className="max-w-sm w-[400px] flex flex-col justify-start">
-          <Card className="h-[350px]">
+        <div className="max-w-sm flex flex-col justify-start">
+          <Card className="w-[398px] h-[398px]">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {productDetail[0]?.detailName}
             </h5>
@@ -92,7 +92,10 @@ const ProductDetail = () => {
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
               {formatPrice(productDetail[0]?.price)}
             </span>
-            <Button onClick={onWishClick} className="mt-4">
+            <Button
+              onClick={onWishClick}
+              className="mt-4 text-white transition duration-150 ease-in-out bg-yellow-300 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+            >
               위시리스트 담기
               <img
                 className="ml-2"
