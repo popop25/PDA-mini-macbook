@@ -8,6 +8,8 @@ import { fetchFundingDetail, fetchFundingPost } from "../Api/Funding";
 import { userInfoState } from "../stores/auth";
 import { useRecoilState } from "recoil";
 import Swal from "sweetalert2";
+import { Alert } from "flowbite-react";
+import { HiEye, HiInformationCircle } from "react-icons/hi";
 
 const Funding = () => {
   const { fundingId } = useParams();
@@ -59,6 +61,21 @@ const Funding = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="w-[90vw] max-w-[700px] flex flex-col items-center">
+        {currentFundingAmount === productDetail?.price ? (
+          <Alert
+            icon={HiInformationCircle}
+            color="success"
+            className="w-[100%]"
+            // onDismiss={() => alert("Alert dismissed!")}
+            withBorderAccent
+          >
+            <span className="font-bold text-[16px]">
+              펀딩이 완료된 상품입니다!
+            </span>
+          </Alert>
+        ) : (
+          <div></div>
+        )}
         <div className="text-[40px] mt-2 mb-3 font-semibold text-center">
           <div>
             <a className="font-extrabold ">{userDetail?.nickName}</a>님의

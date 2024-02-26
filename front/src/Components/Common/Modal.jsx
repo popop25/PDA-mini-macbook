@@ -109,12 +109,18 @@ export default function ModalComp({
   return (
     <div className="flex flex-col items-center ">
       <div className="flex flex-wrap gap-4 w-[100%] items-center flex-col">
-        <Button
-          className=" bg-myColor-green3 border-none hover:bg-myColor-green2 w-[90%]"
-          onClick={() => setOpenModal(true)}
-        >
-          펀딩하기
-        </Button>
+        {currentFundingAmount === targetFundingAmount ? (
+          <Button className=" bg-myColor-green3 border-none hover:bg-myColor-green2 w-[90%]">
+            펀딩완료
+          </Button>
+        ) : (
+          <Button
+            className=" bg-myColor-green3 border-none hover:bg-myColor-green2 w-[90%]"
+            onClick={() => setOpenModal(true)}
+          >
+            펀딩하기
+          </Button>
+        )}
       </div>
       <Modal
         show={openModal}
