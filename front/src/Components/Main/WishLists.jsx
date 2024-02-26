@@ -17,7 +17,7 @@ export default function WishLists({ wishList, fundings }) {
     <div className="p-4 overflow-y-auto h-94vh max-w-66vw scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
       <div className="pb-8 text-2xl font-bold ps-8">
         친구 위시리스트
-        <span className="font-medium text-lg"> ({wishList?.length})</span>
+        <span className="text-lg font-medium"> ({wishList?.length})</span>
       </div>
       <div className="px-8 min-w-96">
         {wishList?.length > 0 &&

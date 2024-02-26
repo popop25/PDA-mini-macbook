@@ -20,10 +20,15 @@ export default function WishList({
   useFundingProgress, // 펀딩 프로세스를 쓸것인가 - 메인화면용
   useButton, // 버튼을 사용할 것인가 - 메인화면용
   imgWidth, // 이미지 크기
+  fundingId,
 }) {
   const navigate = useNavigate();
   function handleCardClick() {
-    navigate(`/product/${_id}`);
+    if (useButton) {
+      navigate(`/product/${_id}`);
+    } else {
+      navigate(`/funding/${fundingId}`);
+    }
   }
 
   function handleButtonClick(e) {
@@ -81,7 +86,10 @@ export default function WishList({
           >
             {title}
           </h5>
-          <p className="px-1 py-2 font-bold text-gray-700 dark:text-gray-400" style={{ fontSize: "0.875rem" }}>
+          <p
+            className="px-1 py-2 font-bold text-gray-700 dark:text-gray-400"
+            style={{ fontSize: "0.875rem" }}
+          >
             {price} 원
           </p>
           {useFundingProgress && (
