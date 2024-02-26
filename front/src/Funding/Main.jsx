@@ -7,6 +7,7 @@ import axios from "axios";
 import { fetchFundingDetail, fetchFundingPost } from "../Api/Funding";
 import { userInfoState } from "../stores/auth";
 import { useRecoilState } from "recoil";
+import Swal from "sweetalert2";
 
 const Funding = () => {
   const { fundingId } = useParams();
@@ -58,15 +59,14 @@ const Funding = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="w-[90vw] max-w-[700px] flex flex-col items-center">
-        <div className="text-[40px] mt-2 font-semibold text-center">
+        <div className="text-[40px] mt-2 mb-3 font-semibold text-center">
           <div>
             <a className="font-extrabold ">{userDetail?.nickName}</a>님의
           </div>
           생일을 축하해주세요!
         </div>
-        {productDetail?.title}
         <img src={productDetail?.detailImageUrl} width={500} />
-        <div className="w-[80%] text-[20px] font-bold">
+        <div className="w-[80%] text-[20px] font-bold text-center mt-3 mb-3">
           {productDetail?.title}
         </div>
         <div className="bg-[#f5f7fb] w-[80%] flex justify-center rounded-lg">
@@ -81,6 +81,8 @@ const Funding = () => {
         </button> */}
         <div className="w-[90%] max-w-[700px] mt-3">
           <ModalComp
+            currentFundingAmount={currentFundingAmount}
+            targetFundingAmount={productDetail?.price}
             fundingId={fundingId}
             productDetail={productDetail}
             userDetail={userDetail}
