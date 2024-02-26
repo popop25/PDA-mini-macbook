@@ -21,22 +21,35 @@ const ProductDetail = () => {
   };
 
   const onWishClick = async () => {
-    isHeart
-      ? Swal.fire({
-          icon: "warning",
-          title: "위시리스트 삭제",
-          text: "펀딩이 취소되고 지금까지 모인 펀딩이 환불처리 됩니다.",
-        }).then(() => window.location.reload())
-      : alert("위시리스트에 추가되었습니다.");
-
     if (!isHeart) {
       const response = await fetchWishPost(productDetail[0]?.productId);
+      Swal.fire({
+        icon: "success",
+        title: "위시리스트 추가",
+        text: "펀딩이 시작됩니다!",
+      }).then(setIsHeart((prev) => !prev));
       console.log(response);
     } else if (isHeart) {
       const response = await fetchWishDelete(productDetail[0]?.productId);
+      Swal.fire({
+        icon: "warning",
+        title: "위시리스트 삭제",
+        text: "펀딩이 취소되고 지금까지 모인 모두 펀딩이 환불처리 됩니다.",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "승인",
+        cancelButtonText: "취소",
+        everseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("펀딩 취소가 완료되었습니다!");
+
+          setIsHeart((prev) => !prev);
+        }
+      });
       console.log(response);
     }
-    setIsHeart((prev) => !prev);
   };
 
   useEffect(() => {

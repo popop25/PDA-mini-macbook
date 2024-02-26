@@ -1,0 +1,24 @@
+/* WishListPage.css */
+
+/* 추가한 미디어 쿼리 */
+@media (min-width: 768px) {
+    .grid-cols-1 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    /* 글씨 크기 조절 (예시로 1.2em) */
+    h2 {
+        font-size: 1.2em;
+    }
+}
+
+@media (min-width:1200px) {
+    .grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1800px) {
+    .grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
