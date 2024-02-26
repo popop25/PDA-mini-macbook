@@ -7,13 +7,20 @@ import axios from "axios";
 import { fetchFundingDetail, fetchFundingPost } from "../Api/Funding";
 import { userInfoState } from "../stores/auth";
 import { useRecoilState } from "recoil";
+import Swal from "sweetalert2";
 
 const Funding = () => {
   const { fundingId } = useParams();
   const [fundingDetail, setFundingDetail] = useState([]);
+  const [userFundingResult, setUserFundingResult] = useState();
   const [productDetail, setProductDetail] = useState();
   const [userDetail, setUserDetail] = useState();
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchFundingDetail(fundingId);
@@ -21,26 +28,45 @@ const Funding = () => {
       setFundingDetail(response[0].transaction);
       setProductDetail(response[0].product);
       setUserDetail(response[0].user);
+
+      const userAmountResult = response[0].transaction.reduce((acc, item) => {
+        const {
+          amount,
+          userId: { nickName },
+        } = item;
+        acc[nickName] = (acc[nickName] || 0) + amount;
+        return acc;
+      }, {});
+      console.log(userAmountResult);
+      const resultArray = Object.entries(userAmountResult).map(
+        ([user, amount]) => ({
+          user,
+          amount,
+        })
+      );
+      console.log(resultArray);
+      setUserFundingResult(resultArray);
     };
     fetchData();
   }, []);
+
   // const currentFundingAmount = fundingDetail.length === 0 ? 0 : 3;
   const currentFundingAmount = fundingDetail.reduce(
     (sum, item) => sum + item.amount,
     0
   );
+
   return (
     <div className="flex flex-col items-center">
       <div className="w-[90vw] max-w-[700px] flex flex-col items-center">
-        <div className="text-[40px] mt-2 font-semibold text-center">
+        <div className="text-[40px] mt-2 mb-3 font-semibold text-center">
           <div>
             <a className="font-extrabold ">{userDetail?.nickName}</a>님의
           </div>
           생일을 축하해주세요!
         </div>
-        {productDetail?.title}
         <img src={productDetail?.detailImageUrl} width={500} />
-        <div className="w-[80%] text-[20px] font-bold">
+        <div className="w-[80%] text-[20px] font-bold text-center mt-3 mb-3">
           {productDetail?.title}
         </div>
         <div className="bg-[#f5f7fb] w-[80%] flex justify-center rounded-lg">
@@ -55,16 +81,18 @@ const Funding = () => {
         </button> */}
         <div className="w-[90%] max-w-[700px] mt-3">
           <ModalComp
+            currentFundingAmount={currentFundingAmount}
+            targetFundingAmount={productDetail?.price}
             fundingId={fundingId}
             productDetail={productDetail}
             userDetail={userDetail}
           />
         </div>
         <div className="flex flex-row flex-wrap w-[100%] justify-center mt-4">
-          {[1, 2, 3, 4, 5].map((value) => {
+          {userFundingResult?.map((value) => {
             return (
-              <div key={value} className="w-[30%] h-[200px] m-1 ">
-                <FundingProfile />
+              <div key={value.user} className="w-[30%] h-[200px] m-1 ">
+                <FundingProfile amount={value.amount} userInfo={value.user} />
               </div>
             );
           })}
