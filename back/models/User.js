@@ -90,6 +90,7 @@ visibleUser.get(function (value, virtual, doc) {
     userEmail: doc.userEmail,
     phoneNumber : doc.phoneNumber,
     nickName: doc.nickName,
+    birthDay: doc.birthDay
   };
 });
 
