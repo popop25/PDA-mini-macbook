@@ -8,27 +8,26 @@ const Funding = require("../models/Funding");
 // baseUrl : 127.0.0.1:3000/api/user/wish/
 
 // 특정 유저의 위시 리스트 조회 GET: /api/user/wish/:phoneNumber
-router.get("/:phoneNumber", authenticate, async (req, res, next) => {
-  try {
-    const phoneNumber = req.params.phoneNumber;
-    const user = await User.findOne({ phoneNumber: phoneNumber }).populate(
-      "isWishList"
-    );
+router.get('/:phoneNumber', authenticate, async (req, res, next) => {
+    try {
+        const phoneNumber = req.params.phoneNumber;
+        const user = await User.findOne({phoneNumber: phoneNumber}).populate('isWishList');
 
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
+        if (!user) {
+            return res.status(404).json({error: "User not found"});
+        }
+        const fundings = await Funding.find({ user: user._id }); // 해당 유저의 모든 Funding 객체 가져오기
+        res.json({
+            userEmail: user.userEmail,
+            nickName: user.nickName,
+            phoneNumber: user.phoneNumber,
+            birthDay: user.birthDay,
+            isWishList: user.isWishList,
+            fundings : fundings
+        });
+    } catch (error) {
+        next(error);
     }
-
-    res.json({
-      userEmail: user.userEmail,
-      nickName: user.nickName,
-      phoneNumber: user.phoneNumber,
-      birthDay: user.birthDay,
-      isWishList: user.isWishList,
-    });
-  } catch (error) {
-    next(error);
-  }
 });
 
 // 나의 위시리스트 상품 추가 POST: /api/user/wish
