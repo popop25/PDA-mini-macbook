@@ -31,12 +31,12 @@ export default function Header() {
           <Button onClick={handleLogout}>로그아웃</Button>
           <Navbar.Toggle />
         </div>
-        <Navbar.Collapse className="flex flex-row items-center justify-center ">
+        <Navbar.Collapse className="flex flex-row items-center justify-center mt-[-24px] ">
           {/* <Navbar.Link href="#" active>
             Home
           </Navbar.Link> */}
           <Navbar.Link
-            className="mt-[-13px] hover:cursor-pointer text-[16px]"
+            className=" hover:cursor-pointer text-[16px]"
             onClick={() => {
               navigate("/main");
             }}
@@ -44,7 +44,7 @@ export default function Header() {
             홈
           </Navbar.Link>
           <Navbar.Link
-            className="mt-[-13px] hover:cursor-pointer text-[16px]"
+            className=" hover:cursor-pointer text-[16px]"
             onClick={() => {
               navigate("/product");
             }}
@@ -52,7 +52,7 @@ export default function Header() {
             상품
           </Navbar.Link>
           <Navbar.Link
-            className="mt-[-13px] hover:cursor-pointer text-[16px]"
+            className="hover:cursor-pointer text-[16px]"
             onClick={() => {
               navigate("/wish");
             }}
