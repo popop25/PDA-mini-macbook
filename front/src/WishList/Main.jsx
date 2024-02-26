@@ -44,7 +44,9 @@ export default function WishListPage() {
 
   useEffect(() => {
     async function fetchData() {
-      const data1 = await fetchWishes(JSON.parse(userInfo).phoneNumber); // user phoneNumber 전달
+      const data1 = await fetchWishes(
+        JSON.parse(sessionStorage.getItem("AUTH_USER")).phoneNumber
+      ); // user phoneNumber 전달
       console.log("2222222", data1);
       setMyWishList(data1.isWishList);
       setFundingData(data1.fundings);

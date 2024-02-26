@@ -30,7 +30,7 @@ const Main = () => {
       try {
         const wishListData = await fetchWishes(phoneNumber);
         setWishList(wishListData);
-        console.log(wishList);
+        console.log("wishList:", wishList);
       } catch (error) {
         console.error("Error fetching user friends:", error);
       }
