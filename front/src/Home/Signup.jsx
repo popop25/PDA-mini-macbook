@@ -5,6 +5,7 @@ import axios from "axios";
 const Signup = () => {
   const navigate = useNavigate();
   const baseUrl = "http://localhost:3001/api/users/signup";
+  const nickNameUrl = "http://localhost:3001/api/users/nickName";
   const handleChangeState = (e) => {
     setState({
       ...state,
@@ -33,6 +34,49 @@ const Signup = () => {
     }
   };
 
+  // const onClickDuplicateId = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await axios.get(dupliUrl, state);
+  //     const idArray = response.data;
+  //     console.log(idArray);
+  //     let isDuplicate = false;
+
+  //     for (const id of idArray) {
+  //       if (id.userEmail === state.userEmail) {
+  //         isDuplicate = true;
+  //         break;
+  //       }
+  //     }
+  //     if (isDuplicate) {
+  //       alert("중복된 이메일 입니다.");
+  //     } else {
+  //       alert("사용가능한 이메일 입니다.");
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("중복 검사가 실패했습니다.");
+  //   }
+  // };
+  const onClickNickNameCheck = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(nickNameUrl, {
+        nickName: state.nickName,
+      });
+      console.log(response.data);
+      if (response.data.result === true) {
+        alert("중복된 닉네임 입니다.");
+      } else {
+        alert("사용가능한 닉네임 입니다.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("중복검사가 실패했습니다.");
+    }
+  };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-yellow-100 to-green-100">
       <div className="max-w-md w-full mx-auto p-8 bg-white rounded-lg shadow-lg">
@@ -65,14 +109,6 @@ const Signup = () => {
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="you@example.com"
               />
-              <div className="absolute inset-y-0 right-0 flex items-center">
-                <button
-                  type="button"
-                  className="inline-flex justify-center px-2 py-1 text-xs font-semibold text-gray-900 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-                >
-                  중복 검사
-                </button>
-              </div>
             </div>
           </div>
 
@@ -123,18 +159,25 @@ const Signup = () => {
             >
               Nickname
             </label>
-            <div className="mt-1 mb-2">
+            <div className="mt-1 mb-2 relative">
               <input
                 id="nickName"
                 name="nickName"
                 type="text"
-                value={state.value}
+                value={state.nickName}
                 autoComplete="nickName"
                 required
                 onChange={handleChangeState}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="Enter your nickName"
               />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 px-3 flex items-center text-xs font-semibold text-white border-l border-gray-300 rounded-r-md bg-yellow-300 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+                onClick={onClickNickNameCheck}
+              >
+                중복 검사
+              </button>
             </div>
             <label
               htmlFor="phoneNumber"

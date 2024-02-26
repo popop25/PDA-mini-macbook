@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiInformationCircle } from "react-icons/hi";
 import { TextInput } from "flowbite-react";
 import { Button, Modal, Alert } from "react-bootstrap";
@@ -6,37 +6,86 @@ import { fetchFundingPost } from "../../Api/Funding";
 import User from "./User";
 import { userInfoState } from "../../stores/auth";
 import { useRecoilState } from "recoil";
+import Swal from "sweetalert2";
 
-export default function ModalComp({ fundingId, productDetail, userDetail }) {
+export default function ModalComp({
+  currentFundingAmount,
+  targetFundingAmount,
+  fundingId,
+  productDetail,
+  userDetail,
+}) {
   const [openModal, setOpenModal] = useState(false);
   const [amount, setAmount] = useState(0);
-  const [isFundingPossible, setIsFundingPossible] = useState(true);
+  const [isFundingPossible, setIsFundingPossible] = useState(false);
   const [openAmountAlert, setOpenAmountAlert] = useState(false);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const userId = sessionStorage.getItem("AUTH_USER");
+  console.log("funding user Id:", JSON.parse(userId)._id);
+
+  const handleAmountChange = (e) => {
+    let inputAmount = e.target.value;
+
+    // Remove non-numeric characters
+    inputAmount = inputAmount.replace(/[^0-9]/g, "");
+
+    // Remove leading zeros
+    inputAmount = inputAmount.replace(/^0+/, "");
+
+    // Format the number with commas every three digits
+    const formattedAmount = inputAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    const numericAmount = parseFloat(formattedAmount.replace(/,/g, ""));
+
+    if (formattedAmount === 0) {
+      setOpenAmountAlert(true);
+    } else if (numericAmount + currentFundingAmount > targetFundingAmount) {
+      setIsFundingPossible(true);
+    } else {
+      setOpenAmountAlert(false);
+      setIsFundingPossible(false);
+    }
+
+    setAmount(formattedAmount);
+  };
+
   const handleFundClick = async () => {
     // console.log(userInfo._id, ":", amount, ":", fundingId);
-    const userId = sessionStorage.getItem("AUTH_USER");
-    console.log(userId);
-    // 입력된 후원 금액이 숫자인지 확인
-    if (!isNaN(amount) && parseFloat(amount) >= 0) {
-      // 펀딩 api 요청을 보낸다
+    if (amount === 0) {
+      return;
+    }
 
-      // 1. 펀딩이 가능한 경우
-      // setOpenModal(false)
-      const response = await fetchFundingPost(fundingId, {
-        userId: userId._id,
-        amount: Number(amount),
-      });
-      console.log(response);
-      window.location.reload();
+    const numericAmount = parseFloat(amount.replace(/,/g, ""));
+    console.log(numericAmount);
 
-      // 2. 펀딩 불가능한 경우
-      setIsFundingPossible(false);
-      setOpenAmountAlert(false); // Alert를 닫습니다.
+    if (numericAmount + currentFundingAmount > targetFundingAmount) {
+      return;
+    }
+    if (
+      !isNaN(numericAmount) &&
+      parseFloat(numericAmount) > 0 &&
+      JSON.parse(userId)._id.length > 2
+    ) {
+      try {
+        const response = await fetchFundingPost(fundingId, {
+          userId: JSON.parse(userId)._id,
+          amount: numericAmount,
+        });
+        console.log("fetchFundingPost:", response);
+        Swal.fire({
+          icon: "success",
+          title: "펀딩 완료!",
+          text: `${amount}원이 성공적으로 펀딩되었습니다.`,
+        }).then(() => window.location.reload());
+        setOpenModal(false);
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "친구 추가 실패",
+          text: "친구 추가 중 오류가 발생했습니다.",
+        });
+      }
     } else {
-      // 숫자가 아니거나 0 이상의 숫자가 아닌 경우
-      setIsFundingPossible(true); // 기존 Alert 상태 초기화
-      setOpenAmountAlert(true); // Alert 표시 상태 업데이트
     }
   };
 
@@ -60,12 +109,18 @@ export default function ModalComp({ fundingId, productDetail, userDetail }) {
   return (
     <div className="flex flex-col items-center ">
       <div className="flex flex-wrap gap-4 w-[100%] items-center flex-col">
-        <Button
-          className=" bg-myColor-green3 border-none hover:bg-myColor-green2 w-[90%]"
-          onClick={() => setOpenModal(true)}
-        >
-          펀딩하기
-        </Button>
+        {currentFundingAmount === targetFundingAmount ? (
+          <Button className=" bg-myColor-green3 border-none hover:bg-myColor-green2 w-[90%]">
+            펀딩완료
+          </Button>
+        ) : (
+          <Button
+            className=" bg-myColor-green3 border-none hover:bg-myColor-green2 w-[90%]"
+            onClick={() => setOpenModal(true)}
+          >
+            펀딩하기
+          </Button>
+        )}
       </div>
       <Modal
         show={openModal}
@@ -99,7 +154,8 @@ export default function ModalComp({ fundingId, productDetail, userDetail }) {
           >
             <TextInput
               value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              // onChange={(e) => setAmount(e.target.value)}
+              onChange={handleAmountChange}
               style={{ height: "40px", padding: "0 10px", fontSize: "20px" }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -112,10 +168,15 @@ export default function ModalComp({ fundingId, productDetail, userDetail }) {
         </Modal.Body>
         <Modal.Footer className="d-flex flex-column align-items-center">
           {openAmountAlert && (
-            <Alert variant="warning">0 이상의 금액을 입력해주세요!</Alert>
+            <Alert variant="warning" className="text-center w-[300px]">
+              금액을 입력해주세요!
+            </Alert>
           )}
-          {!isFundingPossible && (
-            <Alert variant="warning">후원 가능한 금액을 초과했어요!</Alert>
+          {isFundingPossible && (
+            <Alert variant="warning" className="text-center w-[300px]">
+              후원 가능한 금액을 초과했어요 <br />총{" "}
+              {targetFundingAmount - currentFundingAmount}원이 남았어요!
+            </Alert>
           )}
           <div className="d-flex">
             <Button
