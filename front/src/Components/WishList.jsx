@@ -86,11 +86,8 @@ export default function WishList({
           >
             {title}
           </h5>
-          <p
-            className="px-1 py-2 font-bold text-gray-700 dark:text-gray-400"
-            style={{ fontSize: "0.875rem" }}
-          >
-            {price} 원
+          <p className="px-1 py-2 font-bold text-gray-700 dark:text-gray-400" style={{ fontSize: "0.875rem" }}>
+            {parseInt(price).toLocaleString()} 원
           </p>
           {useFundingProgress && (
             <FundingProgress
