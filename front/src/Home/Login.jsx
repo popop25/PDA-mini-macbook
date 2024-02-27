@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../stores/auth";
 import axios from "axios";
+import { fetchLogin } from "../Api/AuthApi";
 
 export const AUTH_KEY = "AUTH_USER";
 
@@ -26,7 +27,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(baseUrl, state);
+      const response = await fetchLogin(state);
       const user = response.data;
       if (user.token) {
         setUserInfo(user);

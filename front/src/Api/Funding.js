@@ -16,6 +16,7 @@ export const fetchFundingDetail = async (fundingId) => {
 // 펀딩하기
 export const fetchFundingPost = async (fundingId, data) => {
   try {
+    console.log(typeof data);
     const response = await afterLoginInstance.post(
       `/funding/${fundingId}`,
       data
