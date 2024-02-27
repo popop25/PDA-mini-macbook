@@ -57,6 +57,12 @@ export default function WishListPage() {
 
   console.log(myWishList);
 
+  // 각 wishList 항목과 연결된 funding 객체의 id를 찾아주는 함수
+  function findFunding(wishId) {
+    const funding = fundingData.find((f) => f.product === wishId);
+    return funding;
+  }
+
   return (
     <div className="bg-gradient-to-r from-yellow-100 to-green-100">
       <h2 className="px-5 pt-5 pb-2 text-[20px] text">나의 위시리스트</h2>
@@ -78,6 +84,7 @@ export default function WishListPage() {
               customHeight={customHeight}
               customProgressBarWidth={customProgressBarWidth}
               fundingId={fundingData[index]?._id}
+              funding={findFunding(myWish._id)}
             />
           ))}
         </div>

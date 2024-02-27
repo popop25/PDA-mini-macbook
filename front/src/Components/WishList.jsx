@@ -10,7 +10,7 @@ export default function WishList({
   brandName,
   title,
   price,
-  totalFunded, // api로 펀딩정보 받아와 직접 계산해야한다
+  // totalFunded, // api로 펀딩정보 받아와 직접 계산해야한다
   remainDays,
   customWidth,
   customHeight,
