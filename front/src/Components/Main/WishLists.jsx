@@ -8,9 +8,9 @@ export default function WishLists({ wishList, fundings, birthDay }) {
   const navigate = useNavigate();
 
   // 각 wishList 항목과 연결된 funding 객체의 id를 찾아주는 함수
-  function findFundingId(wishId) {
+  function findFunding(wishId) {
     const funding = fundings.find((f) => f.product === wishId);
-    return funding ? funding._id : null;
+    return funding;
   }
 
   // wishList의 각 항목에 대해 renderButton 함수 호출
@@ -33,9 +33,9 @@ export default function WishLists({ wishList, fundings, birthDay }) {
               remainDays={calculateDDay(birthDay)}
               renderButton={() => (
                 <Button
-                  className="w-full sm:w-32 lg:w-40 bg-green-400 hover:bg-green-300 border-none text-white font-bold py-2 mt-3 rounded shadow-lg transition-colors duration-200 ease-in-out transform hover:shadow-xl"
+                  className="w-full sm:w-32 lg:w-40 bg-green-400 hover:bg-green-300 border-none text-white font-bold py-2 mt-3 rounded transition-colors duration-200 ease-in-out transform"
                   onClick={() => {
-                    const fundingId = findFundingId(item._id);
+                    const fundingId = findFunding(item._id)._id;
                     if (fundingId) {
                       navigate(`/funding/${fundingId}`);
                     } else {
@@ -49,6 +49,7 @@ export default function WishLists({ wishList, fundings, birthDay }) {
               useFundingProgress={true}
               useButton={true}
               imgWidth={"600px"}
+              funding={findFunding(item._id)}
             />
           ))}
       </div>
