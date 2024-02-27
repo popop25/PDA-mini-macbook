@@ -13,6 +13,24 @@ import { HiEye, HiInformationCircle } from "react-icons/hi";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
 
+const calculateDDay = (targetDate) => {
+  // Get the current date
+  const currentDate = new Date();
+
+  // Parse the target date string to a Date object (Note: Not required in this case)
+  const parsedTargetDate = new Date(targetDate);
+
+  // Calculate the time difference in milliseconds
+  const timeDifference = parsedTargetDate - currentDate;
+
+  console.log(targetDate, ":", currentDate, ":", timeDifference);
+  // Calculate the number of days
+  const daysDifference =
+    Math.ceil(timeDifference / (1000 * 60 * 60 * 24)) % 365;
+
+  return daysDifference < 0 ? (daysDifference + 365) % 365 : daysDifference;
+};
+
 const Funding = () => {
   const { fundingId } = useParams();
   const [fundingDetail, setFundingDetail] = useState([]);
@@ -71,22 +89,6 @@ const Funding = () => {
     (sum, item) => sum + item.amount,
     0
   );
-
-  const calculateDDay = (targetDate) => {
-    // Get the current date
-    const currentDate = new Date();
-
-    // Parse the target date string to a Date object (Note: Not required in this case)
-    const parsedTargetDate = new Date(targetDate);
-
-    // Calculate the time difference in milliseconds
-    const timeDifference = parsedTargetDate - currentDate;
-
-    // Calculate the number of days
-    const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-
-    return daysDifference < 0 ? daysDifference + 365 : daysDifference;
-  };
 
   return (
     <div className="flex flex-col items-center">
@@ -153,4 +155,4 @@ const Funding = () => {
   );
 };
 
-export default Funding;
+export { Funding as default, calculateDDay };
