@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card } from "flowbite-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { fetchProductList } from "../Api/ProductDetailApi";
 
 const Product = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Product = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(baseUrl);
+        const response = await fetchProductList();
         setProducts(response.data.products);
       } catch (error) {
         console.error("There was an error!", error);
