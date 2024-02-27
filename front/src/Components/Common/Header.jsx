@@ -34,10 +34,7 @@ export default function Header() {
             <Avatar rounded size="sm" className="mr-2" />
             {userNickName}
           </span>
-          <Button
-            className="bg-yellow-400 hover:bg-yellow-300"
-            onClick={handleLogout}
-          >
+          <Button color="warning" onClick={handleLogout}>
             로그아웃
           </Button>
           <Navbar.Toggle />

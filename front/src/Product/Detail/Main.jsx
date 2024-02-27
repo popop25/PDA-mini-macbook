@@ -106,7 +106,7 @@ const ProductDetail = () => {
         />
         <div className="flex flex-col justify-start max-w-sm">
           <Card className="w-[398px] h-[398px]">
-            <h5 className="text-2xl  font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-400 ">
+            <h5 className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-400 ">
               {productDetail[0]?.detailName}
             </h5>
             <div className="mb-3 mt-2.5 flex items-center">
@@ -125,7 +125,8 @@ const ProductDetail = () => {
             </span>
             <Button
               onClick={onWishClick}
-              className="mt-4 text-white transition duration-150 ease-in-out bg-yellow-300 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none"
+              color="warning"
+              className="mt-4 text-white transition duration-150 ease-in-out border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none"
             >
               위시리스트 담기
               <img
