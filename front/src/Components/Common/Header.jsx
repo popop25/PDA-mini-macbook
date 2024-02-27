@@ -34,7 +34,9 @@ export default function Header() {
             <Avatar rounded size="sm" className="mr-2" />
             {userNickName}
           </span>
-          <Button onClick={handleLogout}>로그아웃</Button>
+          <Button color="warning" onClick={handleLogout}>
+            로그아웃
+          </Button>
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse className="flex flex-row items-center justify-center mt-[-24px] ">

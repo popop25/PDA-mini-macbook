@@ -26,13 +26,14 @@ function AddFriend() {
 
   return (
     <>
-      <button
+      <Button
+        color="warning"
         onClick={() => setOpenModal(true)}
         type="submit"
         className="inline-flex justify-center px-4 py-2 text-sm font-bold text-white bg-yellow-400 border border-transparent rounded-md shadow-sm hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
       >
         친구 추가
-      </button>
+      </Button>
       <Modal
         show={openModal}
         aria-labelledby="contained-modal-title-vcenter"

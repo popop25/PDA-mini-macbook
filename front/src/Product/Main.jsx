@@ -25,8 +25,8 @@ const Product = () => {
   };
 
   return (
-    <div className="container bg-gradient-to-r from-yellow-100  to-green-100">
-      <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 place-items-center bg-gradient-to-r from-yellow-100  to-green-100 ">
+    <div className="container bg-gradient-to-r from-yellow-100 to-green-100">
+      <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 place-items-center bg-gradient-to-r from-yellow-100 to-green-100 ">
         {products.map((el) => (
           <Card
             key={el._id}
