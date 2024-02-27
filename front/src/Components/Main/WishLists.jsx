@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect } from "react";
 import WishList from "../WishList";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
@@ -18,7 +18,7 @@ export default function WishLists({ wishList, fundings, birthDay }) {
     <div className="p-4 overflow-y-auto h-94vh max-w-66vw scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
       <div className="pb-8 text-2xl font-bold ps-8">
         친구 위시리스트
-        <span className="font-medium text-lg">
+        <span className="text-lg font-medium">
           {" "}
           {`(${wishList?.length || 0})`}
         </span>
@@ -33,7 +33,7 @@ export default function WishLists({ wishList, fundings, birthDay }) {
               remainDays={calculateDDay(birthDay)}
               renderButton={() => (
                 <Button
-                  className="w-full sm:w-32 lg:w-40 bg-green-400 hover:bg-green-300 border-none text-white font-bold py-2 mt-3 rounded shadow-lg transition-colors duration-200 ease-in-out transform hover:shadow-xl"
+                  className="w-full py-2 mt-3 font-bold text-white transition-colors duration-200 ease-in-out transform bg-green-400 border-none rounded shadow-lg sm:w-32 lg:w-40 hover:bg-green-300 hover:shadow-xl"
                   onClick={() => {
                     const fundingId = findFundingId(item._id);
                     if (fundingId) {
@@ -49,6 +49,7 @@ export default function WishLists({ wishList, fundings, birthDay }) {
               useFundingProgress={true}
               useButton={true}
               imgWidth={"600px"}
+              totalFunded={1}
             />
           ))}
       </div>
