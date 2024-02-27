@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Friends from "../Components/Main/Friends";
 import WishLists from "../Components/Main/WishLists";
@@ -30,7 +31,6 @@ const Main = () => {
       try {
         const wishListData = await fetchWishes(phoneNumber);
         setWishList(wishListData);
-        console.log("wishList:", wishList);
       } catch (error) {
         console.error("Error fetching user friends:", error);
       }
@@ -42,7 +42,11 @@ const Main = () => {
   return (
     <div className="flex bg-gradient-to-r from-yellow-100 to-green-100">
       <Friends friends={friends} setPhoneNumber={setPhoneNumber} />
-      <WishLists wishList={wishList.isWishList} fundings={wishList.fundings} />
+      <WishLists
+        wishList={wishList.isWishList}
+        fundings={wishList.fundings}
+        birthDay={wishList.birthDay}
+      />
     </div>
   );
 };

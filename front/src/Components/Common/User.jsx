@@ -10,7 +10,7 @@ export default function User({ friend, setPhoneNumber }) {
       onClick={() => {
         setPhoneNumber(friend.phoneNumber);
       }}
-      className="gap-4 hover:bg-gray-100 hover:cursor-pointer flex-row items-center border-none py-2"
+      className="gap-4 border border-gray-300 hover:bg-gray-100 hover:cursor-pointer flex-row items-center py-2"
     >
       <img
         className="w-12 h-12 object-cover rounded-full ms-8"

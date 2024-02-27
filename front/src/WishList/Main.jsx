@@ -4,7 +4,6 @@ import { Row, Col } from "react-bootstrap";
 import { fetchWishes } from "../Api/WishApi";
 import { fetchFundingDetail } from "../Api/Funding";
 
-const userInfo = sessionStorage.getItem("AUTH_USER");
 // console.log("유저정보", userInfo);
 // console.log(typeof(userInfo))
 
@@ -15,7 +14,8 @@ export default function WishListPage() {
   const customWidth = "w-[300px]";
   const customHeight = "h-[80px]";
   const customProgressBarWidth = "w-[280px]";
-  const birthDayDate = new Date(JSON.parse(userInfo).birthDay);
+  const userInfo = sessionStorage.getItem("AUTH_USER");
+  const birthDayDate = new Date(JSON.parse(userInfo)?.birthDay);
   // console.log("생일", birthDayDate)
 
   // 오늘 날짜

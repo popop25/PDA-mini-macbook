@@ -76,7 +76,10 @@ export default function WishList({
             </h6>
           </div>
         </div>
-        <div style={{ textAlign: "left", overflow: "auto" }} className="w-full md:w-auto lg:w-auto">
+        <div
+          style={{ textAlign: "left", overflow: "auto" }}
+          className="w-full md:w-auto lg:w-auto"
+        >
           <h5
             className={`${
               useButton ? "w-[400px]" : "w-[300px]"
@@ -85,7 +88,10 @@ export default function WishList({
           >
             {title}
           </h5>
-          <p className="px-1 py-2 font-bold text-gray-700 dark:text-gray-400" style={{ fontSize: "0.875rem" }}>
+          <p
+            className="px-1 py-2 font-bold text-gray-700 dark:text-gray-400"
+            style={{ fontSize: "0.875rem" }}
+          >
             {parseInt(price).toLocaleString()} 원
           </p>
           {useFundingProgress && (

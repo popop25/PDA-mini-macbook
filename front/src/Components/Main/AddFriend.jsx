@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { addFriend } from "../../Api/UserApi";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
 
 function AddFriend() {
   const [openModal, setOpenModal] = useState(false);
   const [number, setNumber] = useState("");
-  const navigate = useNavigate();
   const handleAddButtonClick = async () => {
     try {
       await addFriend(number);
@@ -28,20 +26,24 @@ function AddFriend() {
 
   return (
     <>
-      <Button
-        className="bg-myColor-green3 border-none hover:bg-myColor-green2 w-[90%]"
+      <button
         onClick={() => setOpenModal(true)}
+        type="submit"
+        className="inline-flex justify-center px-4 py-2 text-sm font-bold text-white bg-yellow-400 border border-transparent rounded-md shadow-sm hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
       >
         친구 추가
-      </Button>
+      </button>
       <Modal
         show={openModal}
         aria-labelledby="contained-modal-title-vcenter"
         onHide={() => setOpenModal(false)}
         centered
       >
-        <Modal.Header closeButton className="mx-auto">
-          <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Header className="mx-auto w-[248px]">
+          <Modal.Title
+            id="contained-modal-title-vcenter"
+            className="text-center w-100"
+          >
             친구 추가
           </Modal.Title>
         </Modal.Header>
@@ -57,7 +59,12 @@ function AddFriend() {
             <input
               value={number}
               onChange={(e) => setNumber(e.target.value)}
-              style={{ height: "40px", padding: "0 10px", fontSize: "20px" }}
+              style={{
+                height: "40px",
+                padding: "0 10px",
+                fontSize: "20px",
+                border: "solid #CCCCCC 1px",
+              }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   handleAddButtonClick();
