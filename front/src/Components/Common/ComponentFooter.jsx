@@ -30,22 +30,34 @@ export default function ComponentFooter() {
               <div>
                 <Footer.Title title="Team1" />
                 <Footer.LinkGroup col>
-                  <Footer.Link href="#">김영석</Footer.Link>
-                  <Footer.Link href="#">정우성</Footer.Link>
+                  <Footer.Link href="https://github.com/KimYoungSeok15">
+                    김영석
+                  </Footer.Link>
+                  <Footer.Link href="https://github.com/NOEL-code/WOO_SUNG">
+                    정우성
+                  </Footer.Link>
                 </Footer.LinkGroup>
               </div>
               <div>
                 <Footer.Title title="Team2" />
                 <Footer.LinkGroup col>
-                  <Footer.Link href="#">정희수</Footer.Link>
-                  <Footer.Link href="#">박지민</Footer.Link>
+                  <Footer.Link href="https://github.com/heeeesoo">
+                    정희수
+                  </Footer.Link>
+                  <Footer.Link href="https://github.com/jiminpark23">
+                    박지민
+                  </Footer.Link>
                 </Footer.LinkGroup>
               </div>
               <div>
                 <Footer.Title title="Follow us" />
                 <Footer.LinkGroup col>
-                  <Footer.Link href="#">Github</Footer.Link>
-                  <Footer.Link href="#">Notion</Footer.Link>
+                  <Footer.Link href="https://github.com/mini-macbook/PDA-mini-macbook">
+                    Github
+                  </Footer.Link>
+                  <Footer.Link href="https://www.notion.so/ae40c1a3028c4a8bab940c3454c65614?pvs=4">
+                    Notion
+                  </Footer.Link>
                 </Footer.LinkGroup>
               </div>
             </div>
