@@ -3,7 +3,8 @@ import React from "react";
 import WishList from "../WishList";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
-export default function WishLists({ wishList, fundings }) {
+import { calculateDDay } from "../../Funding/Main";
+export default function WishLists({ wishList, fundings, birthDay }) {
   const navigate = useNavigate();
 
   // 각 wishList 항목과 연결된 funding 객체의 id를 찾아주는 함수
@@ -11,6 +12,7 @@ export default function WishLists({ wishList, fundings }) {
     const funding = fundings.find((f) => f.product === wishId);
     return funding ? funding._id : null;
   }
+
   // wishList의 각 항목에 대해 renderButton 함수 호출
   return (
     <div className="p-4 overflow-y-auto h-94vh max-w-66vw scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
@@ -28,6 +30,7 @@ export default function WishLists({ wishList, fundings }) {
               key={index}
               {...item}
               customHeight={"h-[180px]"}
+              remainDays={calculateDDay(birthDay)}
               renderButton={() => (
                 <Button
                   className="w-full sm:w-32 lg:w-40 bg-green-400 hover:bg-green-300 border-none text-white font-bold py-2 mt-3 rounded shadow-lg transition-colors duration-200 ease-in-out transform hover:shadow-xl"

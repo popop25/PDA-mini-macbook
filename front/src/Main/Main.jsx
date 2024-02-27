@@ -42,7 +42,11 @@ const Main = () => {
   return (
     <div className="flex bg-gradient-to-r from-yellow-100 to-green-100">
       <Friends friends={friends} setPhoneNumber={setPhoneNumber} />
-      <WishLists wishList={wishList.isWishList} fundings={wishList.fundings} />
+      <WishLists
+        wishList={wishList.isWishList}
+        fundings={wishList.fundings}
+        birthDay={wishList.birthDay}
+      />
     </div>
   );
 };
