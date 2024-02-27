@@ -16,14 +16,21 @@ import Confetti from "react-confetti";
 const calculateDDay = (targetDate) => {
   // Get the current date
   const currentDate = new Date();
+  const curYear = currentDate.getFullYear();
+  const currentDay = currentDate.getDate(); // Day of the month (1-31)
+  const currentMonth = currentDate.getMonth() + 1;
 
   // Parse the target date string to a Date object (Note: Not required in this case)
   const parsedTargetDate = new Date(targetDate);
+  const targetDay = parsedTargetDate.getDate();
+  const targetMonth = parsedTargetDate.getMonth() + 1;
+
+  const curDateObject = new Date(curYear, currentMonth - 1, currentDay);
+  const targetDateObject = new Date(curYear, targetMonth - 1, targetDay);
 
   // Calculate the time difference in milliseconds
-  const timeDifference = parsedTargetDate - currentDate;
+  const timeDifference = targetDateObject - curDateObject;
 
-  console.log(targetDate, ":", currentDate, ":", timeDifference);
   // Calculate the number of days
   const daysDifference =
     Math.ceil(timeDifference / (1000 * 60 * 60 * 24)) % 365;

@@ -59,7 +59,7 @@ export default function WishList({
       >
         <div
           style={{
-            width: "280px",
+            width: useButton ? "280px": "150px",
           }}
         >
           {imageUrl && (
