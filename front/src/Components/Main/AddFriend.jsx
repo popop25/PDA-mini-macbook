@@ -59,6 +59,7 @@ function AddFriend() {
             <input
               value={number}
               onChange={(e) => setNumber(e.target.value)}
+              placeholder="010-1234-5678"
               style={{
                 height: "40px",
                 padding: "0 10px",
@@ -78,12 +79,12 @@ function AddFriend() {
           <div className="d-flex">
             <Button
               onClick={handleAddButtonClick}
-              className="border-none bg-myColor-green3 hover:bg-myColor-green2"
+              className="border-none bg-myColor-green2 hover:bg-myColor-green1"
             >
               친구 추가
             </Button>
             <Button
-              className="ml-2 text-myColor-green3 border-myColor-green3 hover:border-myColor-green2 hover:bg-white hover:text-myColor-green2"
+              className="ml-2 text-myColor-green2 border-myColor-green2 hover:border-myColor-green1 hover:bg-white  hover:text-myColor-green1 focus:border-myColor-green1"
               onClick={() => setOpenModal(false)}
             >
               취소
