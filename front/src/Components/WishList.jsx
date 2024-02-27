@@ -20,6 +20,7 @@ export default function WishList({
   useButton, // 버튼을 사용할 것인가 - 메인화면용
   imgWidth, // 이미지 크기
   fundingId,
+  funding, // 현재 위시리스트에 해당하는 펀딩객체
 }) {
   const navigate = useNavigate();
   function handleCardClick() {
@@ -35,6 +36,12 @@ export default function WishList({
     // Stop the event propagation to prevent triggering the card click
     e.stopPropagation();
   }
+
+  const currentFundingAmount = funding?.transaction?.reduce(
+    (sum, item) => sum + item.amount,
+    0
+  );
+
   return (
     <Card
       className={
@@ -52,7 +59,7 @@ export default function WishList({
       >
         <div
           style={{
-            width: "280px",
+            width: useButton ? "280px": "150px",
           }}
         >
           {imageUrl && (
@@ -97,7 +104,7 @@ export default function WishList({
           {useFundingProgress && (
             <FundingProgress
               targetFundingAmount={price}
-              currentFundingAmount={totalFunded}
+              currentFundingAmount={currentFundingAmount}
               remainDays={remainDays}
               customWidth={customWidth}
               customHeight={customHeight}
