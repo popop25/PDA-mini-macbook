@@ -6,8 +6,10 @@ import {
   BsInstagram,
   BsTwitter,
 } from "react-icons/bs";
+import { useNavigate } from "react-router";
 
 export default function ComponentFooter() {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col p-1 mt-8">
       {/* Footer 부분 */}
@@ -16,12 +18,17 @@ export default function ComponentFooter() {
           {" "}
           {/* 상단과 하단의 패딩을 줄임 */}
           <div className="grid justify-between w-full sm:flex sm:justify-between md:flex md:grid-cols-1">
-            <div>
+            <div
+              onClick={() => {
+                navigate("/main");
+              }}
+            >
               <Footer.Brand
                 src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
                 alt="Logo"
                 height="80px" // 로고 크기 조정
                 width="80px"
+                className="w-[142px] h-[100px]"
               />
             </div>
             <div className="grid grid-cols-4 gap-4 sm:gap-4 sm:mt-0">
