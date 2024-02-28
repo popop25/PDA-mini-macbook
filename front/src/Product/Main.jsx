@@ -34,7 +34,7 @@ const Product = () => {
             onClick={() => {
               navigate(`/product/${el._id}`);
             }}
-            className="max-w-sm h-[500px]"
+            className="max-w-sm hover:cursor-pointer flex-grow h-full"
             imgAlt="Meaningful alt text for an image that is not purely decorative"
             imgSrc={el.imageUrl}
           >

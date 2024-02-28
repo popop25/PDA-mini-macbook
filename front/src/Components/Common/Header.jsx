@@ -25,7 +25,10 @@ export default function Header() {
     <div>
       <Navbar fluid rounded className="mb-4 shadow-sm">
         <Navbar.Brand>
-          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+          <span
+            className="pl-6 self-center text-xl font-semibold whitespace-nowrap dark:text-white hover:cursor-pointer"
+            onClick={() => navigate("/main")}
+          >
             티끌
           </span>
         </Navbar.Brand>
