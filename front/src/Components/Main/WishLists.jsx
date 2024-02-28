@@ -15,7 +15,7 @@ export default function WishLists({ wishList, fundings, birthDay }) {
 
   // wishList의 각 항목에 대해 renderButton 함수 호출
   return (
-    <div className="p-4 overflow-y-auto h-94vh max-w-66vw scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+    <div className="p-4 overflow-y-auto ml-0 h-94vh max-w-66vw scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
       <div className="pb-8 text-2xl font-bold ps-8">
         친구 위시리스트
         <span className="text-lg font-medium">
@@ -31,10 +31,12 @@ export default function WishLists({ wishList, fundings, birthDay }) {
                 key={index}
                 {...item}
                 customHeight={"h-[180px]"}
+                customWidth={"w-[400px]"}
+                customProgressBarWidth={"w-[380px]"}
                 remainDays={calculateDDay(birthDay)}
                 renderButton={() => (
                   <Button
-                    className="w-full py-2 mt-3 font-bold text-white transition-colors duration-200 ease-in-out transform bg-green-400 border-none rounded sm:w-32 lg:w-40 hover:bg-green-300"
+                    className="w-full py-2 my-3 font-bold text-white transition-colors duration-200 ease-in-out transform bg-green-400 border-none rounded sm:w-32 lg:w-40 hover:bg-green-300"
                     onClick={() => {
                       const fundingId = findFunding(item._id)._id;
                       if (fundingId) {

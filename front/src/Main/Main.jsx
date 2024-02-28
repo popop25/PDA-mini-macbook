@@ -40,8 +40,10 @@ const Main = () => {
   }, [phoneNumber]);
 
   return (
-    <div className="flex bg-gradient-to-r from-yellow-100 to-green-100">
-      <Friends friends={friends} setPhoneNumber={setPhoneNumber} />
+    <div className="flex bg-gradient-to-r from-yellow-100 to-green-100 mt-[-24px] mb-[-36px]">
+      <div className="h-screen sticky left-0 top-0 overflow-y-auto">
+        <Friends friends={friends} setPhoneNumber={setPhoneNumber} />
+      </div>
       <WishLists
         wishList={wishList.isWishList}
         fundings={wishList.fundings}

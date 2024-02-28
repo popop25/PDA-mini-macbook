@@ -1,22 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import User from "../Common/User";
 import AddFriend from "./AddFriend";
+import "./Friends.css";
 
 export default function Friends({ friends, setPhoneNumber }) {
+  const [isNarrow, setIsNarrow] = useState(false);
+
+  const toggleNarrowView = () => {
+    setIsNarrow(!isNarrow);
+  };
   return (
-    <div className=" min-h-[38rem] w-96 p-4 bg-white border border-gray-300 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
-      <div className="font-bold text-2xl ps-8 pb-8 flex justify-start">
-        <div>친구</div>
-        <div className="flex flex-grow justify-between">
-          <span className="font-medium text-lg pe-auto align-text-bottom">
-            ({friends.length})
-          </span>
-          <AddFriend />
-        </div>
+    <div className={`friends-container py-4 ${isNarrow ? "narrow-view" : ""}`}>
+      <div className="toggle-button" onClick={toggleNarrowView}>
+        <p>{isNarrow ? "▶" : "◀"}</p>
       </div>
-      {friends.map((friend) => {
-        return <User friend={friend} setPhoneNumber={setPhoneNumber}></User>;
-      })}
+      {!isNarrow && (
+        <div className="">
+          <div className="header">
+            <div className="info">
+              <div className="title">친구</div>
+              <span className="text-lg font-medium">({friends.length})</span>
+            </div>
+            <AddFriend />
+          </div>
+          {!isNarrow && (
+            <div className="friend-list">
+              {friends.map((friend) => (
+                <User
+                  key={friend.id}
+                  friend={friend}
+                  setPhoneNumber={setPhoneNumber}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

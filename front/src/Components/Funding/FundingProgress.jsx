@@ -5,9 +5,9 @@ const FundingProgress = ({
   targetFundingAmount = 10000,
   currentFundingAmount = 5000,
   remainDays = 1,
-  customWidth = "w-[400px]",
+  customWidth,
   customHeight = "h-[200px]",
-  customProgressBarWidth = "w-[380px]",
+  customProgressBarWidth,
 }) => {
   const now = (currentFundingAmount / targetFundingAmount) * 100;
 

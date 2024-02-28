@@ -59,7 +59,7 @@ export default function WishList({
       >
         <div
           style={{
-            width: useButton ? "280px": "150px",
+            width: useButton ? "280px" : "150px",
           }}
         >
           {imageUrl && (
@@ -83,14 +83,9 @@ export default function WishList({
             </h6>
           </div>
         </div>
-        <div
-          style={{ textAlign: "left", overflow: "auto" }}
-          className="w-full md:w-auto lg:w-auto"
-        >
+        <div className=" overflow-auto text-start justify-between w-full md:w-auto lg:w-auto">
           <h5
-            className={`${
-              useButton ? "w-[400px]" : "w-[300px]"
-            } text-xl font-bold tracking-tight text-yellow-500 dark:text-white`}
+            className={`w-[300px] text-xl font-bold tracking-tight text-yellow-500 dark:text-white`}
             style={{ marginBottom: "5px", fontSize: "1rem" }}
           >
             {title}
@@ -112,7 +107,7 @@ export default function WishList({
             ></FundingProgress>
           )}
           {useButton && (
-            <div className="flex justify-end " onClick={handleButtonClick}>
+            <div className="flex justify-end" onClick={handleButtonClick}>
               {renderButton()}
             </div>
           )}
