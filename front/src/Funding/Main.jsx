@@ -44,7 +44,7 @@ const Funding = () => {
   const [userFundingResult, setUserFundingResult] = useState();
   const [productDetail, setProductDetail] = useState();
   const [userDetail, setUserDetail] = useState();
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [userInfo, setUserInfo] = useState();
   const { width, height } = useWindowSize();
   const [showConfetti, setShowConfetti] = useState(true);
 
@@ -79,6 +79,7 @@ const Funding = () => {
       setUserFundingResult(resultArray);
     };
     fetchData();
+    setUserInfo(JSON.parse(sessionStorage.getItem("AUTH_USER")).nickName);
   }, []);
 
   useEffect(() => {
@@ -120,9 +121,14 @@ const Funding = () => {
         )}
         <div className="text-[40px] mt-2 mb-3 font-semibold text-center">
           <div>
-            <a className="font-extrabold ">{userDetail?.nickName}</a>님의
+            <a className="font-extrabold ">
+              {userDetail?.nickName === userInfo ? (
+                <div>펀딩이 진행 중입니다!</div>
+              ) : (
+                <div>{userDetail?.nickName}님의 생일을 축하해주세요!</div>
+              )}
+            </a>
           </div>
-          생일을 축하해주세요!
         </div>
         <img src={productDetail?.detailImageUrl} width={500} />
         <div className="w-[80%] text-[20px] font-bold text-center mt-3 mb-3">
