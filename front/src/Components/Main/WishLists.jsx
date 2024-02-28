@@ -23,7 +23,7 @@ export default function WishLists({ wishList, fundings, birthDay }) {
           {`(${wishList?.length || 0})`}
         </span>
       </div>
-      <div className="px-8 min-w-96">
+      <div className="md:px-8">
         {wishList?.length > 0 &&
           wishList.map((item, index) => (
             <div key={index} className="mb-3 ">
@@ -31,8 +31,8 @@ export default function WishLists({ wishList, fundings, birthDay }) {
                 key={index}
                 {...item}
                 customHeight={"h-[180px]"}
-                customWidth={"w-[400px]"}
-                customProgressBarWidth={"w-[380px]"}
+                customWidth={"w-[100%]"}
+                customProgressBarWidth={"w-[90%]"}
                 remainDays={calculateDDay(birthDay)}
                 renderButton={() => (
                   <Button
