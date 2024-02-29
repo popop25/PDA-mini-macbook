@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */ 
 // tailwind.config.js
+// XPDL
 module.exports = {
   mode: "jit",
   content: [
