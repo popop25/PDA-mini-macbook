@@ -1,28 +1,29 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
-import { Card } from "react-bootstrap";
+import profileImg from "../../imgs/profile.png";
+
 export default function User({ friend, setPhoneNumber }) {
-  const month = friend.birthDay.slice(5, 7); // 생년월일에서 월 추출
-  const day = friend.birthDay.slice(8, 10); // 생년월일에서 일 추출
+  const month = new Date(friend.birthDay).getMonth() + 1;
+  const day = new Date(friend.birthDay).getDate();
 
   return (
-    <Card
+    <div
       onClick={() => {
         setPhoneNumber(friend.phoneNumber);
       }}
-      className="md:gap-8 border border-gray-300 hover:bg-gray-100 hover:cursor-pointer md:flex-row flex-col items-center py-2"
+      className="gap-4 hover:bg-gray-100 hover:cursor-pointer flex items-center py-2 px-4 rounded-lg transition-colors duration-300"
     >
       <img
-        className="w-0 h-0 md:w-12 md:h-12 object-cover rounded-full md:ms-8"
-        src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-social-600nw-1677509740.jpg"
-        alt="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-social-600nw-1677509740.jpg"
+        className="w-10 h-10 object-cover rounded-full"
+        src={profileImg}
+        alt="User avatar"
       />
-      <span className="me-8">
-        <Card.Text className="text-xl">{friend.nickName}</Card.Text>
-        <Card.Text className="text-lg text-slate-500">
+      <div className="ml-4">
+        <div className="text-xl">{friend.nickName}</div>
+        <div className="text-sm text-slate-500">
           {month}월 {day}일
-        </Card.Text>
-      </span>
-    </Card>
+        </div>
+      </div>
+    </div>
   );
 }

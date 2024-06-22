@@ -14,7 +14,6 @@ import DetailDescription from "../Product/Detail/DetailDescription";
 export const mainRoutes = [
   {
     path: "",
-    element: <DefaultLayout />,
     children: [
       {
         index: true,

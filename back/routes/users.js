@@ -4,6 +4,45 @@ const User = require("../models/User");
 const { createToken, verifyToken } = require("../utils/auth");
 const { verify } = require("jsonwebtoken");
 
+router.get("/find", async (req, res, next) => {
+  try {
+    // Fetch all users
+    const users = await User.find();
+
+    // Log the fetched users for debugging purposes
+    console.log("Fetched users:", users);
+
+    // Sort users by birthDay (month and day)
+    users.sort((a, b) => {
+      const aDate = new Date(a.birthDay);
+      const bDate = new Date(b.birthDay);
+
+      const aMonth = aDate.getUTCMonth() + 1; // getUTCMonth() returns 0-11
+      const aDay = aDate.getUTCDate();
+      const bMonth = bDate.getUTCMonth() + 1;
+      const bDay = bDate.getUTCDate();
+
+      if (aMonth !== bMonth) {
+        return aMonth - bMonth;
+      } else {
+        return aDay - bDay;
+      }
+    });
+
+    // Log the sorted users for debugging purposes
+    console.log("Sorted users:", users);
+
+    // Return sorted users
+    res.json(users);
+  } catch (err) {
+    // Log the error for debugging purposes
+    console.error("Error fetching or sorting users:", err);
+
+    // Pass the error to the next middleware
+    next(err);
+  }
+});
+
 router.get("/user/:userEmail", async (req, res, next) => {
   console.log(req.params.userEmail);
   User.findById(req.params.userEmail)

@@ -64,7 +64,7 @@ export default function WishListPage() {
   }
 
   return (
-    <div className="bg-gradient-to-r from-yellow-100 to-green-100">
+    <div className="">
       <h2 className="px-5 pt-5 pb-2 text-[20px] text">나의 위시리스트</h2>
 
       <div className="p-5">
