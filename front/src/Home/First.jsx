@@ -17,13 +17,13 @@ const First = () => {
             to="/login"
             className="w-full sm:w-56 lg:w-64 bg-blue-500 hover:bg-blue-300 text-white font-bold py-3 px-6 rounded-2xl shadow-lg transition-colors duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-xl"
           >
-            LOGIN
+            로그인
           </Link>
           <Link
             to="/signup"
             className="w-full sm:w-56 lg:w-64 bg-green-400 hover:bg-green-300 text-white font-bold py-3 px-6 rounded-2xl shadow-lg transition-colors duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-xl"
           >
-            SIGN UP
+            회원가입
           </Link>
         </div>
       </div>

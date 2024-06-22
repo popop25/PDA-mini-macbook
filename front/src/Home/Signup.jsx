@@ -7,6 +7,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const baseUrl = "http://localhost:3001/api/users/signup";
   const nickNameUrl = "http://localhost:3001/api/users/nickName";
+
   const handleChangeState = (e) => {
     setState({
       ...state,
@@ -22,6 +23,7 @@ const Signup = () => {
     phoneNumber: "",
     birthDay: Date.now(),
   });
+
   const onClickSignUp = async (e) => {
     e.preventDefault();
 
@@ -35,31 +37,6 @@ const Signup = () => {
     }
   };
 
-  // const onClickDuplicateId = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const response = await axios.get(dupliUrl, state);
-  //     const idArray = response.data;
-  //     console.log(idArray);
-  //     let isDuplicate = false;
-
-  //     for (const id of idArray) {
-  //       if (id.userEmail === state.userEmail) {
-  //         isDuplicate = true;
-  //         break;
-  //       }
-  //     }
-  //     if (isDuplicate) {
-  //       alert("중복된 이메일 입니다.");
-  //     } else {
-  //       alert("사용가능한 이메일 입니다.");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     alert("중복 검사가 실패했습니다.");
-  //   }
-  // };
   const onClickNickNameCheck = async (e) => {
     e.preventDefault();
 
@@ -67,9 +44,6 @@ const Signup = () => {
       const response = await fetchNickName({
         nickName: state.nickName,
       });
-      // const response = await axios.post(nickNameUrl, {
-      //   nickName: state.nickName,
-      // });
       console.log(response.data);
       if (response.data.result === true) {
         alert("중복된 아이디 입니다.");
@@ -81,6 +55,7 @@ const Signup = () => {
       alert("중복검사가 실패했습니다.");
     }
   };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 mx-auto bg-white rounded-lg shadow-lg">
@@ -112,6 +87,7 @@ const Signup = () => {
                 />
               </div>
             </div>
+
             {/* 아이디 */}
             <div className="flex items-center space-x-2">
               <label
@@ -134,8 +110,6 @@ const Signup = () => {
                 />
               </div>
             </div>
-
-
 
             {/* 중복 검사 버튼 */}
             <div className="flex items-center space-x-2">
@@ -252,7 +226,7 @@ const Signup = () => {
             <div>
               <button
                 onClick={onClickSignUp}
-                className="inline-flex justify-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+                className="inline-flex justify-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-blue-500 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
               >
                 회원가입하기
               </button>
@@ -261,10 +235,6 @@ const Signup = () => {
         </form>
       </div>
     </div>
-
-
-
-
   );
 };
 
