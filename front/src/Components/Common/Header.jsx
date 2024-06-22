@@ -29,7 +29,7 @@ export default function Header() {
             className="pl-6 self-center text-xl font-semibold whitespace-nowrap dark:text-white hover:cursor-pointer"
             onClick={() => navigate("/main")}
           >
-            티끌
+            티끌모아 맥북
           </span>
         </Navbar.Brand>
         <div className="flex items-center justify-center md:order-2">
@@ -37,7 +37,7 @@ export default function Header() {
             <Avatar rounded size="sm" className="mr-2" />
             {userNickName}
           </span>
-          <Button color="warning" onClick={handleLogout}>
+          <Button color="blue" onClick={handleLogout}>
             로그아웃
           </Button>
           <Navbar.Toggle />
@@ -68,7 +68,7 @@ export default function Header() {
               navigate("/wish");
             }}
           >
-            위시리스트
+            나의 펀딩
           </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>

@@ -3,7 +3,7 @@ import { afterLoginInstance } from "./AxiosInstance";
 // 유저의 친구 목록을 가져오는 API 함수
 export const fetchUserFriends = async () => {
   try {
-    const response = await afterLoginInstance.get("/users/friends");
+    const response = await afterLoginInstance.get("/users/find");
     return response.data;
   } catch (error) {
     throw error;

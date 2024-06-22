@@ -8,7 +8,6 @@ export default function SandwichLayout() {
     <>
       <Header />
       <Outlet />
-      <ComponentFooter />
     </>
   );
 }

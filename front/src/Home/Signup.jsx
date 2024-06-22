@@ -82,7 +82,7 @@ const Signup = () => {
     }
   };
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-yellow-100 to-green-100">
+    <div className="flex items-center justify-center min-h-screen ">
       <div className="w-full max-w-md p-8 mx-auto bg-white rounded-lg shadow-lg">
         <img
           className="w-auto h-20 mx-auto rounded-full"
