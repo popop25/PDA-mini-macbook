@@ -44,19 +44,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-yellow-100 to-green-100">
-      <div className="max-w-md p-10 mx-auto bg-white rounded-lg shadow-xl w-max">
-        <img
-          className="mx-auto rounded-full shadow-lg h-60"
-          src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
-          alt="Your Company"
-        />
-        <h2 className="mt-6 text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-teal-400">
-          로그인
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex flex-col items-center justify-center p-10 bg-white rounded-3xl shadow-m w-full  max-w-3xl gap-10">
+        <h2 className="mt-6 text-4xl md:text-6xl font-extrabold text-center text-transparent bg-clip-text text-black">
+          티끌모아 맥북
         </h2>
 
-        <form className="mt-8 space-y-6" onSubmit={onClickLogin}>
-          <div className="rounded-md shadow-sm">
+        <form className="mt-8 w-full max-w-64" onSubmit={onClickLogin}>
+          <div className="rounded-md">
             <div>
               <input
                 id="userEmail"
@@ -65,19 +60,19 @@ const Login = () => {
                 autoComplete="userEmail"
                 required
                 className="relative block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
-                placeholder="이메일 주소"
+                placeholder="아아디"
                 value={state.userEmail}
                 onChange={handleChangeState}
               />
             </div>
-            <div className="mt-4">
+            <div className="mt-3">
               <input
                 id="userPassword"
                 name="userPassword"
                 type="password"
                 autoComplete="current-userPassword"
                 required
-                className="relative block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="relative block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="비밀번호"
                 value={state.userPassword}
                 onChange={handleChangeState}
@@ -85,7 +80,7 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mt-2">
             <Link
               to="/"
               className="font-medium text-indigo-600 hover:text-indigo-500"
